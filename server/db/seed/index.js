@@ -17,8 +17,11 @@ const seed = async () => {
         )
         orders.forEach((order)=>{
             order.setUser(users[Math.floor(Math.random()*users.length)])
+            for(let i=0;i<Math.ceil(Math.random()*8);i++){
+                order.addProduct(products[Math.floor(Math.random()*products.length)])
+            }
         })
-
+        
 	} catch (err) {
 		console.log(err);
 	}
