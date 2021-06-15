@@ -18,9 +18,9 @@ const seed = async () => {
         orders.forEach((order)=>{
             order.setUser(users[Math.floor(Math.random()*users.length)])
         })
-        
+
 	} catch (err) {
-		console.log(red(err));
+		console.log(err);
 	}
 };
 
@@ -31,11 +31,11 @@ module.exports = seed;
 if (require.main === module) {
 	seed()
 		.then(() => {
-			console.log(green("Seeding success!"));
+			console.log("Seeding success!");
 			db.close();
 		})
 		.catch((err) => {
-			console.error(red("Oh noes! Something went wrong!"));
+			console.error("Dang! Something went wrong!");
 			console.error(err);
 			db.close();
 		});
