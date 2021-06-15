@@ -9,7 +9,7 @@ const OrderDetails=require('./models/orderDetails')
 
 //associations could go here!
 User.hasMany(Order)
-Order.belongsto(User)
+Order.belongsTo(User)
 
 Order.belongsToMany(Product,{through: OrderDetails})
 Product.belongsToMany(Order, {through: OrderDetails})
