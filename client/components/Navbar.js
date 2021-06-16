@@ -3,9 +3,29 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import Products from './Products';
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+
+
+
+const Navbar = ({ handleClick, isLoggedIn }) => { 
+  const sidebar = <ProSidebar>
+  <Menu iconShape="square">
+    {!isLoggedIn ? <MenuItem><Link to="/login">Login</Link></MenuItem> : <MenuItem>Logout</MenuItem>}
+    <SubMenu title="Components">
+      <MenuItem>Component 1</MenuItem>
+      <MenuItem>Component 2</MenuItem>
+    </SubMenu>
+  </Menu>
+</ProSidebar>;
+
+  return(
+
+
   <div>
+     <div>
+        {sidebar}
+    </div>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -25,11 +45,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       )}
     </nav>
   </div>
-);
+)}
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
