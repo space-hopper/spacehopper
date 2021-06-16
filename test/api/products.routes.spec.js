@@ -4,7 +4,8 @@ const app = require('../../server/app');
 const { Product } = require('../../server/db/');
 const seed = require('../../server/db/seed');
 
-describe('Product routes', () => {
+describe('Product routes', function () {
+  this.timeout(30000);
   beforeEach(async () => {
     await seed();
   });
@@ -12,9 +13,8 @@ describe('Product routes', () => {
   describe('/api/products/', () => {
     it('GET /api/products', async () => {
       const res = await request(app).get('/api/products').expect(200);
-      console.log(res);
       expect(res.body).to.be.an('array');
-      expect(res.body.length).to.equal(2);
+      expect(res.body.length).to.equal(500);
     });
   });
 
@@ -23,6 +23,13 @@ describe('Product routes', () => {
       const res = await request(app).get('/api/products/1').expect(200);
 
       expect(res.body).to.be.an('object');
+      expect(res.body).to.include.keys(
+        'id',
+        'name',
+        'price',
+        'quantity',
+        'imageURL'
+      );
     });
   });
 });
