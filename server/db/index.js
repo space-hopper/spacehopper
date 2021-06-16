@@ -24,7 +24,7 @@ Order.prototype.getTotal=async function(){
 
 module.exports = {
   db,
-  
+
     User,
     Product,
     Order,
