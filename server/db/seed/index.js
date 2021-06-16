@@ -3,6 +3,7 @@ const orderData=require("./rawOrderData")
 const userData=require('./rawUserData')
 const {db, User, Product, Order, OrderDetails}=require('../index')
 
+
 const seed = async () => {
 	try {
 		await db.sync({ force: true });
@@ -13,14 +14,17 @@ const seed = async () => {
 		
 		const orders=await Promise.all(orderData.map((order) => Order.create(order)));
         const users=await Promise.all(
-            userData.map((user)=>User.create(userS))
+
+
+            userData.map((user)=>User.create(user))
         )
-        orders.forEach((order)=>{
-            order.setUser(users[Math.floor(Math.random()*users.length)])
-            for(let i=0;i<Math.ceil(Math.random()*8);i++){
-                order.addProduct(products[Math.floor(Math.random()*products.length)])
-            }
-        })
+        for(let j=0;j<orders.length;j++){
+			await orders[j].setUser(users[Math.floor(Math.random()*users.length)])
+			for(let i=0;i<Math.ceil(Math.random()*8);i++){
+				await orders[j].addProduct(products[Math.floor(Math.random()*products.length)])
+			}
+		}
+
         
 	} catch (err) {
 		console.log(err);
