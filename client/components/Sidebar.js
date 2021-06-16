@@ -47,7 +47,7 @@ const Sidebar = () => {
             </MenuItem>
             <MenuItem icon={<FaList />}>Category</MenuItem>
             <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-            <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
+            <MenuItem icon={<RiPencilLine />}>Login</MenuItem>
             <MenuItem icon={<BiCog />}>Settings</MenuItem>
           </Menu>
         </SidebarContent>
