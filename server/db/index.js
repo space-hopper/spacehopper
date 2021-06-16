@@ -30,4 +30,5 @@ module.exports = {
   Product,
   Order,
   OrderDetails,
+
 };
