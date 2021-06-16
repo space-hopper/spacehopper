@@ -3,7 +3,6 @@ const orderData=require("./rawOrderData")
 const userData=require('./rawUserData')
 const {db, User, Product, Order, OrderDetails}=require('../index')
 
-
 const seed = async () => {
 	try {
 		await db.sync({ force: true });
