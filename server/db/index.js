@@ -4,7 +4,7 @@ const db = require('./db');
 
 const Order=require("./models/orders")
 const User = require('./models/user');
-const Product = require('./models/Product');
+const Product = require('./models/product');
 const OrderDetails=require('./models/orderDetails')
 
 //associations could go here!
