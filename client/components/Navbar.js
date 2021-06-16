@@ -7,7 +7,6 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 
 
-
 const Navbar = ({ handleClick, isLoggedIn }) => { 
   const sidebar = <ProSidebar className="cartSidebar">
   <Menu iconShape="square">
@@ -20,33 +19,30 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
   </Menu>
 </ProSidebar>;
 
-  return(
-
-
-  <div>
-     <div>
-        {sidebar}
+  return (
+    <div>
+      <div>{sidebar}</div>
+      <nav>
+        {isLoggedIn ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">Home</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </div>
+        ) : (
+          <div>
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/">Cart</Link>
+            <Products />
+          </div>
+        )}
+      </nav>
     </div>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Products />
-        </div>
-      )}
-    </nav>
-  </div>
-)}
+  )};
 
 const mapState = (state) => {
   return {
@@ -62,4 +58,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Navbar);
+export default connect(mapState, mapDispatch)(Navbar)
