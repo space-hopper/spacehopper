@@ -11,3 +11,4 @@ const OrderDetails=db.define("orderDetails",{
         
     }
 })
+module.exports=OrderDetails
