@@ -1,9 +1,5 @@
 const router = require('express').Router();
-<<<<<<< HEAD
 const Product = require('../db/models/product');
-=======
-const { Product } = require('../db');
->>>>>>> 714baaa1220bf9dc75df8a96a771fce721747a36
 module.exports = router;
 
 // GET api/products
