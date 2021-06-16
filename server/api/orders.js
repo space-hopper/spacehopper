@@ -2,8 +2,9 @@ const router = require('express').Router();
 const {User, Order, Product}=require('../db')
 
 //mounted on /api/orders
-router.post('/', async(req,res,next)=>{
+router.post('/:userId', async(req,res,next)=>{
     try{const order=await Order.create()
+        await order.setUser(await User.findByPk(req.params.userId))
     res.json(order)}
     catch(err){
         next(err)
