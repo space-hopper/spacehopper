@@ -3,7 +3,7 @@
 const db = require('./db');
 
 
-const User = require('./models/customer');
+const User = require('./models/user');
 const Product = require('./models/Product');
 
 
