@@ -2,10 +2,8 @@
 
 const db = require('./db');
 
-
-const User = require('./models/customer');
-const Product = require('./models/Product');
-
+const User = require('./models/user');
+const Product = require('./models/product');
 
 //associations could go here!
 

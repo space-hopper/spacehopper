@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const request = require('supertest');
-const app = require('../server/app');
-const { Product } = require('../server/db/');
+const app = require('../../server/app');
+const { Product } = require('../../server/db');
 const seed = require('../../script/seed');
 
 describe('Product routes', () => {

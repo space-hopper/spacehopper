@@ -1,16 +1,29 @@
 const { expect } = require('chai');
+const { checkPropertyExists } = require('sequelize-test-helpers');
 const User = require('../../server/db/models/user');
 const jwt = require('jsonwebtoken');
 const seed = require('../../script/seed');
 
 describe('User model', () => {
+  describe('check User model properties', () => {
+    const user = new User();
+    context('properties', () => {
+      [
+        'firstName',
+        'lastName',
+        'address',
+        'phoneNumber',
+        'email',
+        'password',
+        'isMember',
+        'isAdmin',
+      ].forEach(checkPropertyExists(user));
+    });
+  });
+
   let users;
   beforeEach(async () => {
     users = (await seed()).users;
-  });
-
-  describe('column definitions', () => {
-    it('has firstName, lastName,  ');
   });
 
   describe('instanceMethods', () => {
@@ -27,14 +40,18 @@ describe('User model', () => {
       beforeEach(
         async () =>
           (user = await User.create({
+            firstName: 'Cody',
+            lastName: 'Smith',
             email: 'test@email.com',
             password: 'testpassword',
-          })),
+          }))
       );
 
       describe('with correct credentials', () => {
         it('returns a token', async () => {
           const token = await User.authenticate({
+            firstName: 'Cody',
+            lastName: 'Smith',
             email: 'test@email.com',
             password: 'testpassword',
           });
@@ -46,6 +63,8 @@ describe('User model', () => {
         it('throws a 401', async () => {
           try {
             await User.authenticate({
+              firstName: 'Cody',
+              lastName: 'Smith',
               email: 'test@email.com',
               password: 'wrongpassword',
             });
