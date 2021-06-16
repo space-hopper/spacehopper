@@ -1,7 +1,7 @@
 const router = require('express').Router();
 module.exports = router;
 
-router.use('/users', require('./users'));
+router.use('/customers', require('./customers'));
 router.use('/products', require('./products'));
 
 router.use((req, res, next) => {
