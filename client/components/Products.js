@@ -10,7 +10,8 @@ function FrogPicList() {
           className="productImage"
           src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"
         />
-        <p styles={{ paddingLeft: '40px' }}>Hop! Hop!</p>
+        <h2 className="productDescription">Jumping Frog</h2>
+        <h3 className="productDescription">$42.99</h3>
       </div>
     );
   }
@@ -21,10 +22,13 @@ export default class Products extends React.Component {
   render() {
     return (
       <>
-        <h1>Welcome to Space Hopper!</h1>
+      <div className="diagonalBox">
+        <div className="boxContent">
+        <h1>𓆏 SPACE HOPPER: 𓆏 THE PLACE TO HOP UP YOUR SPACE</h1>
         <div className="productFormat">
           <FrogPicList />
-          <div></div>
+        </div>
+        </div>
         </div>
       </>
     );
