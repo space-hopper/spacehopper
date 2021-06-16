@@ -10,7 +10,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 const Navbar = ({ handleClick, isLoggedIn }) => { 
   const sidebar = <ProSidebar className="cartSidebar">
   <Menu iconShape="square">
-    <MenuItem><img src="/Users/erinlemkey/Desktop/GRACEHOPPER/SeniorPhase/SPACEHOPPER/spacehopper/public/cart-icon.png"></img><Link to="/cart">My Cart</Link></MenuItem>
+    <MenuItem><Link to="/cart">My Cart</Link></MenuItem>
     <SubMenu title="Items">
       <MenuItem><img className="cartItem" src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"></img></MenuItem>
       <MenuItem><img className="cartItem" src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"></img></MenuItem>
