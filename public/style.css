@@ -6,9 +6,25 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: rgb(158, 252, 158);
+  font-size: 22px;
+}
+
 label {
   display: block;
 }
+
+h1 {
+  font-size: 150px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.buttonDesign {
+  padding-bottom: 20px;
+}
+
 
 nav a {
   display: inline-block;
@@ -32,6 +48,27 @@ form div {
   padding-left: 20px;
 }
 
+<<<<<<< HEAD
+=======
+.productDescription {
+  text-align: center;
+}
+
+.markGreen {
+  color: #2E8B57;
+}
+
+.diagonal-box {
+  background-image: linear-gradient(45deg, rgb(195, 255, 199), rgb(1, 63, 5));
+  transform: skewY(-11deg);
+}
+
+.content {
+  max-width: 50em;
+  margin: 0 auto;
+  transform: skewY(11deg);
+}
+>>>>>>> 022d97c4741816c0020a532b97b04616570c0aee
 #sidebar {
   position: absolute;
   width: 220px;
