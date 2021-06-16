@@ -8,7 +8,7 @@ const OrderDetails=db.define("orderDetails",{
             validate:{
                 min:0
             }
-        
+        //add pirce
     }
 })
 module.exports=OrderDetails

@@ -10,7 +10,8 @@ const Product=db.define('product',{
         }
     },
     price:{
-        type:Sequelize.DECIMAL(10,2),
+        type:Sequelize.INTEGER,
+        //add methods to convert to and from pennies
         allowNull:false,
         validate:{
             min:0
@@ -24,7 +25,7 @@ const Product=db.define('product',{
         }
     },
     imageURL:{
-        type:Sequelize.DataTypes.STRING,
+        type:Sequelize.DataTypes.TEXTS,
         defaultValue:'https://i.etsystatic.com/14179829/d/il/15e5dc/1835412120/il_340x270.1835412120_n3v4.jpg?version=0',
         validate:{
             isUrl:true
