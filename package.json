@@ -1,7 +1,7 @@
 {
   "name": "space-hopper",
-  "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "version": "1.0.0",
+  "description": "E-commerce site to shop for frog-themed home decor items",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -28,6 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "pg": "^8.5.1",
+    "react-icons": "^4.2.0",
+    "react-pro-sidebar": "^0.6.0",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
@@ -55,6 +57,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
+    "sequelize-test-helpers": "^1.3.3",
     "sinon": "^11.1.1",
     "supertest": "^4.0.2",
     "webpack": "^5.15.0",
