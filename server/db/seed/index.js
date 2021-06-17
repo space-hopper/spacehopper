@@ -8,9 +8,7 @@ const seed = async () => {
 		await db.sync({ force: true });
 		// seed your database here!
 		const products= await Promise.all(
-			productData.map((product) => {
-				product.price=Math.floor(product.price*100)
-				Product.create(product)})
+			productData.map((product) => Product.create(product))
 		);
 		
 		const orders=await Promise.all(orderData.map((order) => Order.create(order)));

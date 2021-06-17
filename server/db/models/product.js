@@ -15,6 +15,12 @@ const Product=db.define('product',{
         allowNull:false,
         validate:{
             min:0
+        },
+        get(){
+            return this.getDataValue('price')/100
+        },
+        set(priceToSet){
+            this.setDataValue('price',Math.floor(priceToSet*100))
         }
     },
     quantity:{
