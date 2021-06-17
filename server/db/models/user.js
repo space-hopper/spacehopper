@@ -43,12 +43,10 @@ const User = db.define('user', {
   },
   isMember: {
     type: Sequelize.BOOLEAN,
-    
     defaultValue: false,
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
-    
     defaultValue: false,
   },
 });
