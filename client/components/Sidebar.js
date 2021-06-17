@@ -34,7 +34,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="logotext">
-            <p>{menuCollapse ? 'Closed' : 'Open!!!'}</p>
+            <p>{menuCollapse ? '' : 'Space Hopper!'}</p>
           </div>
           <div onClick={menuIconClick}>
             {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
@@ -43,7 +43,7 @@ const Sidebar = () => {
         <SidebarContent>
           <Menu iconShape="square">
             <MenuItem active={true} icon={<FiHome />}>
-              Home
+              Log In
             </MenuItem>
             <MenuItem icon={<FaList />}>Category</MenuItem>
             <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
