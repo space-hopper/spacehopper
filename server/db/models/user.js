@@ -22,17 +22,9 @@ const User = db.define('user', {
   },
   address: {
     type: Sequelize.TEXT,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   phoneNumber: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   email: {
     type: Sequelize.STRING,
@@ -81,7 +73,7 @@ User.authenticate = async function ({ email, password }) {
     error.status = 401;
     throw error;
   }
-  return User.generateToken();
+  return user.generateToken();
 };
 
 User.findByToken = async function (token) {
