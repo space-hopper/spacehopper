@@ -747,6 +747,6 @@ const orderData=[{status:"pending",shippingAddress:"21 Hagan Parkway"},
 {status:"cancelled",shippingAddress:"339 Scoville Park"},
 {status:"shipped",shippingAddress:"8237 Messerschmidt Street"},
 {status:"pending",shippingAddress:"497 Redwing Crossing"},
-{status:"cancelled",shippingAddress:"8724 Randy Parkway"}]"id":7,"id":7,
+{status:"cancelled",shippingAddress:"8724 Randy Parkway"}]
 
 module.exports=orderData
