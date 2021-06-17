@@ -14,6 +14,7 @@ const OrderDetails=db.define("orderDetails",{
     },
     totalPrice:{
         type:Sequelize.DataTypes.INTEGER,
+        defaultValue:1,
         validate:{
             min:0
         },
@@ -27,11 +28,11 @@ const OrderDetails=db.define("orderDetails",{
 })
 
 
-OrderDetails.beforeValidate=async(orderDetails,options)=>{
-    console.log(orderDetails)
+OrderDetails.beforeCreate(async(orderDetails,options)=>{
+    console.log('hello!!!')
     const order =await Orders.findByPk(orderDetails.productId)
     const basePrice=order.price
     orderDetails.totalPrice=basePrice*orderDetails.quantity
-}
+})
 
 module.exports=OrderDetails
