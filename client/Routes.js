@@ -28,10 +28,10 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/:id" componenent={SingleProduct} />
-            <Route path="/cart" componenent={Cart} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/:id" component={SingleProduct} />
           </Switch>
         )}
       </div>
