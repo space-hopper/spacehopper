@@ -1,7 +1,14 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchSingleProduct } from '../store/products';
 
-export default class SingleProduct extends React.Component {
+class SingleProduct extends React.Component {
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    console.log('product id>>>', id);
+    this.props.loadSinglProduct(id);
+  }
   render() {
     return (
       <div>
@@ -18,3 +25,17 @@ export default class SingleProduct extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    product: state.product,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadSinglProduct: (id) => dispatch(fetchSingleProduct(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
