@@ -5,24 +5,19 @@ import { logout } from '../store';
 import Products from './Products';
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
-const Navbar = ({ handleClick, isLoggedIn }) => {
-  const sidebar = (
-    <ProSidebar>
-      <Menu iconShape="square">
-        {!isLoggedIn ? (
-          <MenuItem>
-            <Link to="/login">Login</Link>
-          </MenuItem>
-        ) : (
-          <MenuItem>Logout</MenuItem>
-        )}
-        <SubMenu title="Components">
-          <MenuItem>Component 1</MenuItem>
-          <MenuItem>Component 2</MenuItem>
-        </SubMenu>
-      </Menu>
-    </ProSidebar>
-  );
+
+
+const Navbar = ({ handleClick, isLoggedIn }) => { 
+  const sidebar = <ProSidebar className="cartSidebar">
+  <Menu iconShape="square">
+    <MenuItem><Link to="/cart">My Cart</Link></MenuItem>
+    <SubMenu title="Items">
+      <MenuItem><img className="cartItem" src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"></img></MenuItem>
+      <MenuItem><img className="cartItem" src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"></img></MenuItem>
+    </SubMenu>
+    <SubMenu title="Total"></SubMenu>
+  </Menu>
+</ProSidebar>;
 
   return (
     <div>
@@ -47,8 +42,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
         )}
       </nav>
     </div>
-  );
-};
+  )};
 
 const mapState = (state) => {
   return {
@@ -64,4 +58,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Navbar);
+export default connect(mapState, mapDispatch)(Navbar)

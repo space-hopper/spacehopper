@@ -28,7 +28,8 @@ export default class Products extends React.Component {
   render() {
     return (
       <>
-        <h1>𓆏 SPACE HOPPER: 𓆏 THE PLACE TO HOP UP YOUR SPACE</h1>
+        <h1><span className="flipH">𓆏</span> SPACE HOPPER 𓆏 </h1>
+        <h1>THE PLACE TO HOP UP YOUR SPACE</h1>
         <div className="productFormat">
           <FrogPicList />
           <div></div>
