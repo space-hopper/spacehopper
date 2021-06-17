@@ -19,7 +19,7 @@ Order.prototype.getTotal = async function () {
     include: [{ model: 'orderDetails' }],
   });
 
-  productList.reduce((accumulator, product) => {
+  return productList.reduce((accumulator, product) => {
     return (accumulator += product.price * product.orderDetails.quantity);
   }, 0);
 };
