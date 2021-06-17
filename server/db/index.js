@@ -5,11 +5,7 @@ const db = require('./db');
 const Order = require('./models/orders');
 const User = require('./models/user');
 const Product = require('./models/product');
-<<<<<<< HEAD
-const OrderDetails=require('./models/orderDetails')
-=======
 const OrderDetails = require('./models/orderDetails');
->>>>>>> main
 
 //associations could go here!
 User.hasMany(Order);

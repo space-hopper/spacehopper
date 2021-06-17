@@ -13,16 +13,6 @@ const seed = async () => {
 		
 		const orders=await Promise.all(orderData.map((order) => Order.create(order)));
         const users=await Promise.all(
-<<<<<<< HEAD
-            userData.map((user)=>User.create(userS))
-        )
-        orders.forEach((order)=>{
-            order.setUser(users[Math.floor(Math.random()*users.length)])
-            for(let i=0;i<Math.ceil(Math.random()*8);i++){
-                order.addProduct(products[Math.floor(Math.random()*products.length)])
-            }
-        })
-=======
             userData.map((user)=>User.create(user))
         )
         for(let j=0;j<orders.length;j++){
@@ -31,7 +21,6 @@ const seed = async () => {
 				await orders[j].addProduct(products[Math.floor(Math.random()*products.length)])
 			}
 		}
->>>>>>> main
         
 	} catch (err) {
 		console.log(err);
