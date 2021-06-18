@@ -6,11 +6,6 @@ a {
   text-decoration: none;
 }
 
-button {
-  background-color: rgb(158, 252, 158);
-  font-size: 22px;
-}
-
 label {
   display: block;
 }
@@ -21,9 +16,6 @@ h1 {
   text-align: center;
 }
 
-.buttonDesign {
-  padding-bottom: 20px;
-}
 
 nav a {
   display: inline-block;
@@ -35,19 +27,39 @@ form div {
   display: inline-block;
 }
 
+.buttonDesign {
+  background-color: rgb(158, 252, 158);
+  font-size: 22px;
+}
+
+.buttonSpacing {
+  padding-top: 20px;
+}
+
 .productFormat {
+  padding-bottom: 30px;
   display: flex;
-  flex-wrap: wrap;
+}
+
+.flexBox {
+  display: flex;
+  flex-direction: column;
 }
 
 .productImage {
-  width: 300px;
-  height: 300px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  width: 350px;
+  height: 350px;
 }
 
-.productDescription {
+.itemName {
+  font-size: 40px;
+  font-style: italic;
+  text-align: center;
+}
+
+.productPrice {
+  font-size: 30px;
+  text-emphasis: bold;
   text-align: center;
 }
 

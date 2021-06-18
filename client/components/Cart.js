@@ -7,7 +7,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 
 
-const Cart = ({ handleClick, isLoggedIn }) => { 
+const Cart = ({isLoggedIn, handleClick}) => { 
   const sidebar = <ProSidebar className="cartSidebar">
   <Menu iconShape="square">
     <MenuItem><Link to="/cart">My Cart</Link></MenuItem>
