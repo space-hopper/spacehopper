@@ -6,23 +6,21 @@ class SingleProduct extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.loadSingleProduct(id);
-    console.log('product id>>>', id);
-    console.log("props!", this.props)
-    console.log("PRODUCT!", this.props.product)
   }
   render() {
-    // const dummyData = {name: "Sir William Jenkins McGee"}
-    // const product = this.state.singleProductReducer.product
-    // console.log("THIS PRODUCTTT", product)
     return (
       <div>
-        <h1>fghsfdh</h1>
+        <h1>{this.props.product.product && this.props.product.product.name}</h1>
+        <h3>{this.props.product.product && this.props.product.product.price}</h3>
+        <div className="buttonDesign">
+          <button>Add To Cart</button>
+        </div>
         <img
           className="productImage"
-          src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"
+          src={this.props.product.product && this.props.product.product.imageUrl}
         />
         <p>
-          This is a description for a cute/tacky/horrid/questionable froggy product for your home.
+          This quality decor item will undoubtedly add some amphibian charm to any space!
         </p>
       </div>
     );
