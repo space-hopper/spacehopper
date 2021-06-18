@@ -47,19 +47,10 @@ form div {
   padding-left: 20px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
 .productDescription {
   text-align: center;
 }
 
-<<<<<<< HEAD
-.markGreen {
-  color: #2E8B57;
-=======
 .cartItem {
   width: 160px;
   height: 160px;
@@ -72,7 +63,6 @@ form div {
 .flipH {
   position: absolute;
   transform: rotate(360deg) scaleX(-1);
->>>>>>> main
 }
 
 .diagonal-box {
@@ -85,10 +75,7 @@ form div {
   margin: 0 auto;
   transform: skewY(11deg);
 }
-<<<<<<< HEAD
->>>>>>> 022d97c4741816c0020a532b97b04616570c0aee
-=======
->>>>>>> main
+
 #sidebar {
   position: absolute;
   width: 220px;
