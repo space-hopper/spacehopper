@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navbar from './components/Navbar';
+import Cart from './components/Cart';
 import Routes from './Routes';
 import Sidebar from './components/Sidebar';
 
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
       <Sidebar />
-      <Navbar />
+      <Cart />
       <Routes />
     </div>
   );

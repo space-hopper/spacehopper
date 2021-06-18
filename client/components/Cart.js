@@ -7,7 +7,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 
 
-const Navbar = ({ handleClick, isLoggedIn }) => { 
+const Cart = ({isLoggedIn, handleClick}) => { 
   const sidebar = <ProSidebar className="cartSidebar">
   <Menu iconShape="square">
     <MenuItem><Link to="/cart">My Cart</Link></MenuItem>
@@ -58,4 +58,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Cart)
