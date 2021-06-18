@@ -8,20 +8,13 @@ import {
   SidebarContent,
 } from 'react-pro-sidebar';
 
-// //import icons from react icons
-import { FaList, FaRegHeart } from 'react-icons/fa';
+import { FaList, FaShoppingCart } from 'react-icons/fa';
 import {
   FiHome,
   FiLogOut,
   FiArrowLeftCircle,
   FiArrowRightCircle,
 } from 'react-icons/fi';
-import { RiPencilLine } from 'react-icons/ri';
-import { BiCog } from 'react-icons/bi';
-
-// //import sidebar css from react-pro-sidebar module and our custom css
-// import 'react-pro-sidebar/dist/css/styles.css';
-// import './Sidebar.css';
 
 const Sidebar = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
@@ -34,7 +27,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="logotext">
-            <p>{menuCollapse ? '' : 'Space Hopper!'}</p>
+            <p>{menuCollapse ? '' : 'Space Hopper'}</p>
           </div>
           <div onClick={menuIconClick}>
             {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
@@ -45,10 +38,8 @@ const Sidebar = () => {
             <MenuItem active={true} icon={<FiHome />}>
               Log In
             </MenuItem>
-            <MenuItem icon={<FaList />}>Category</MenuItem>
-            <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-            <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-            <MenuItem icon={<BiCog />}>Settings</MenuItem>
+            <MenuItem icon={<FaList />}>Products</MenuItem>
+            <MenuItem icon={<FaShoppingCart />}>Cart</MenuItem>
           </Menu>
         </SidebarContent>
         <SidebarFooter>
@@ -59,29 +50,6 @@ const Sidebar = () => {
       </ProSidebar>
     </div>
   );
-
-//   <div>
-//   <div>{sidebar}</div>
-//   <nav>
-//     {isLoggedIn ? (
-//       <div>
-//         {/* The navbar will show these links after you log in */}
-//         <Link to="/home">Home</Link>
-//         <a href="#" onClick={handleClick}>
-//           Logout
-//         </a>
-//       </div>
-//     ) : (
-//       <div>
-//         {/* The navbar will show these links before you log in */}
-//         <Link to="/login">Login</Link>
-//         <Link to="/signup">Sign Up</Link>
-//         <Link to="/">Cart</Link>
-//         <Products />
-//       </div>
-//     )}
-//   </nav>
-// </div>
 };
 
 export default Sidebar;

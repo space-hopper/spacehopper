@@ -7,9 +7,6 @@ import Products from './components/Products';
 import { me } from './store';
 import SingleProduct from './components/SingleProduct';
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
