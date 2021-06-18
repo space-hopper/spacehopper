@@ -34,7 +34,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="logotext">
-            <p>{menuCollapse ? 'Closed' : 'Open!!!'}</p>
+            <p>{menuCollapse ? '' : 'Space Hopper!'}</p>
           </div>
           <div onClick={menuIconClick}>
             {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
@@ -43,7 +43,7 @@ const Sidebar = () => {
         <SidebarContent>
           <Menu iconShape="square">
             <MenuItem active={true} icon={<FiHome />}>
-              Home
+              Log In
             </MenuItem>
             <MenuItem icon={<FaList />}>Category</MenuItem>
             <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
@@ -59,6 +59,29 @@ const Sidebar = () => {
       </ProSidebar>
     </div>
   );
+
+//   <div>
+//   <div>{sidebar}</div>
+//   <nav>
+//     {isLoggedIn ? (
+//       <div>
+//         {/* The navbar will show these links after you log in */}
+//         <Link to="/home">Home</Link>
+//         <a href="#" onClick={handleClick}>
+//           Logout
+//         </a>
+//       </div>
+//     ) : (
+//       <div>
+//         {/* The navbar will show these links before you log in */}
+//         <Link to="/login">Login</Link>
+//         <Link to="/signup">Sign Up</Link>
+//         <Link to="/">Cart</Link>
+//         <Products />
+//       </div>
+//     )}
+//   </nav>
+// </div>
 };
 
 export default Sidebar;
