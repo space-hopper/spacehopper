@@ -18,7 +18,7 @@ const seed = async () => {
         for(let j=0;j<orders.length;j++){
 			await orders[j].setUser(users[Math.floor(Math.random()*users.length)])
 			for(let i=0;i<Math.ceil(Math.random()*8);i++){
-				await orders[j].addProduct(products[Math.floor(Math.random()*products.length)])
+				await orders[j].addProduct(products[Math.floor(Math.random()*products.length)],{individualHooks:true})
 			}
 		}
         
