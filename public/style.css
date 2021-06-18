@@ -60,6 +60,12 @@ form div {
   float: right;
 }
 
+.iconSize {
+  background-image: './cart-icon.png';
+  width: 45px;
+  height: 45px;
+}
+
 .flipH {
   position: absolute;
   transform: rotate(360deg) scaleX(-1);
