@@ -5,9 +5,9 @@ export const Home = (props) => {
   const { username } = props;
 
   return (
-    <div>
+    <div className="home">
       <h1>
-        <span className="flipH">𓆏</span> SPACE HOPPER 𓆏
+        <span>SPACE HOPPER</span>
       </h1>
       <h1>THE PLACE TO HOP UP YOUR SPACE</h1>
       {username && <h3>Welcome, {username}</h3>}
