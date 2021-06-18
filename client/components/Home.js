@@ -1,26 +1,24 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
-/**
- * COMPONENT
- */
-export const Home = props => {
-  const {username} = props
+export const Home = (props) => {
+  const { username } = props;
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h1>
+        <span className="flipH">𓆏</span> SPACE HOPPER 𓆏
+      </h1>
+      <h1>THE PLACE TO HOP UP YOUR SPACE</h1>
+      {username && <h3>Welcome, {username}</h3>}
     </div>
-  )
-}
+  );
+};
 
-/**
- * CONTAINER
- */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    username: state.auth.username
-  }
-}
+    username: state.auth.username,
+  };
+};
 
-export default connect(mapState)(Home)
+export default connect(mapState)(Home);
