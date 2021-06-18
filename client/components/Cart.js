@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import Products from './Products';
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 const Cart = ({ isLoggedIn, handleClick }) => {
@@ -49,7 +48,6 @@ const Cart = ({ isLoggedIn, handleClick }) => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/">Cart</Link>
-            <Products />
           </div>
         )}
       </nav>
