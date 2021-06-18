@@ -17,7 +17,7 @@ class SingleProduct extends React.Component {
         </div>
         <img
           className="productImage"
-          src={this.props.product.product && this.props.product.product.imageUrl}
+          src={this.props.product.product && this.props.product.product.imageURL}
         />
         <p>
           This quality decor item will undoubtedly add some amphibian charm to any space!
