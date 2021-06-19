@@ -9,26 +9,29 @@ class SingleProduct extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="single-product">
         <h1>{this.props.product.product && this.props.product.product.name}</h1>
-        <h3>{this.props.product.product && this.props.product.product.price}</h3>
-        <div className="buttonDesign">
-          <button>Add To Cart</button>
-        </div>
         <img
           className="productImage"
-          src={this.props.product.product && this.props.product.product.imageURL}
+          src={
+            this.props.product.product && this.props.product.product.imageURL
+          }
         />
-        <p>
-          This quality decor item will undoubtedly add some amphibian charm to any space!
+        <p className="productPrice">
+          $ {this.props.product.product && this.props.product.product.price}
         </p>
+        <p>
+          This quality decor item will undoubtedly add some amphibian charm to
+          any space!
+        </p>
+        <button className="buttonDesign">Add To Cart</button>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE",state)
+  console.log('STATE', state);
   return {
     product: state.product,
   };
@@ -36,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadSingleProduct: (id) => dispatch(fetchSingleProduct(id))
+    loadSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
   };
 };
 
