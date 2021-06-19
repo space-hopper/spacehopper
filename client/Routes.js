@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import { me } from './store';
 import SingleProduct from './components/SingleProduct';
+import Cart from './components/Cart';
 
 class Routes extends Component {
   componentDidMount() {
@@ -29,6 +30,7 @@ class Routes extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         )}
       </>
