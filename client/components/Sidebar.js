@@ -27,7 +27,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="logotext">
-            <p>{menuCollapse ? '' : 'Space Hopper'}</p>
+            <p>{menuCollapse ? 'SH' : 'Space Hopper'}</p>
           </div>
           <div onClick={menuIconClick}>
             {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}

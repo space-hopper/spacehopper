@@ -14,14 +14,17 @@ class Products extends React.Component {
     const products = this.props.products;
     console.log('products', products);
     return (
-      <div className="products-container">
-        {!products ? (
-          <h3>WHERE FOR ART OUR ITEMS</h3>
-        ) : (
-          products.map((item) => {
-            return <ProductCard key={item.id} item={item} />;
-          })
-        )}
+      <div className="products-page">
+        <p className="page-heading">All Products</p>
+        <div className="products-container">
+          {!products ? (
+            <h3>WHERE FOR ART OUR ITEMS</h3>
+          ) : (
+            products.map((item) => {
+              return <ProductCard key={item.id} item={item} />;
+            })
+          )}
+        </div>
       </div>
     );
   }
