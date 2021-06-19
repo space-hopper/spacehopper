@@ -36,6 +36,8 @@ form div {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   border-radius: 5px;
   border: 0;
   padding: 0.5rem 1rem;
@@ -175,6 +177,12 @@ form div {
   .pro-item-content {
   color: #000;
 }
+
+#sidebar .pro-item-content {
+  display: flex;
+  align-items: center;
+}
+
 #sidebar .pro-sidebar-inner .pro-sidebar-layout .active {
   background-image: linear-gradient(0deg, #41944f 0%, #aeeeb3 100%);
 }
@@ -187,7 +195,9 @@ form div {
   flex-direction: column;
   align-items: center;
   width: calc(-220px + 100vw);
-  padding: 100px 50px;
+  padding: 200px 50px 0;
+  background-color: #b8fcb6;
+  clip-path: polygon(0 0, 100% 24%, 100% 100%, 0 79%);
 }
 
 .products-container {
@@ -209,4 +219,17 @@ form div {
   font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
   font-weight: 500;
+}
+
+.home-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.home-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  text-align: center;
 }
