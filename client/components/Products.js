@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../redux/actions/ProductThunks';
+import ProductCard from './ProductCard';
 // import { addToCart } from '../redux/actions/CartThunks'
 
 class Products extends React.Component {
@@ -11,35 +12,17 @@ class Products extends React.Component {
 
   render() {
     const products = this.props.products;
-    console.log(products);
+    console.log('products', products);
     return (
-      <>
+      <div className="products-container">
         {!products ? (
           <h3>WHERE FOR ART OUR ITEMS</h3>
         ) : (
           products.map((item) => {
-            return (
-              <div key={item.id}>
-                <div className="productFormat">
-                  <div className="flexBox">
-                    <img
-                      className="productImage"
-                      src={item.imageURL}
-                      alt={item.name}
-                    />
-                    <div className="itemName">{item.name}</div>
-                    <div className="productPrice">${item.price}</div>
-                    <div className="buttonSpacing">
-                      <button className="buttonDesign">Future Button</button>
-                    </div>
-                    {/* <button onClick={() => loadItemToCart(item)}>Add To Cart</button> */}
-                  </div>
-                </div>
-              </div>
-            );
+            return <ProductCard key={item.id} item={item} />;
           })
         )}
-      </>
+      </div>
     );
   }
 }

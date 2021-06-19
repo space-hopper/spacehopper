@@ -40,14 +40,11 @@ form div {
   padding-top: 20px;
 }
 
-.productFormat {
-  padding-bottom: 30px;
-  display: flex;
-}
-
-.flexBox {
+.product-card {
   display: flex;
   flex-direction: column;
+  margin: 2rem 0;
+  align-items: center;
 }
 
 .productImage {
@@ -56,15 +53,13 @@ form div {
 }
 
 .itemName {
-  font-size: 40px;
-  font-style: italic;
-  text-align: center;
+  font-size: 2rem;
+  margin: 1rem 0;
 }
 
 .productPrice {
-  font-size: 30px;
+  font-size: 1.5rem;
   text-emphasis: bold;
-  text-align: center;
 }
 
 .cartItem {
@@ -181,4 +176,7 @@ form div {
   align-items: center;
   width: calc(-220px + 100vw);
   padding: 100px 50px;
+}
+
+.products-container {
 }
