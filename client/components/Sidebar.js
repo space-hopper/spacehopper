@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ProSidebar,
   Menu,
@@ -7,10 +8,10 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-
 import { FaList, FaShoppingCart } from 'react-icons/fa';
 import {
   FiHome,
+  FiLogIn,
   FiLogOut,
   FiArrowLeftCircle,
   FiArrowRightCircle,
@@ -27,7 +28,7 @@ const Sidebar = () => {
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="logotext">
-            <p>{menuCollapse ? '' : 'Space Hopper'}</p>
+            <p>{menuCollapse ? 'SH' : 'Space Hopper'}</p>
           </div>
           <div onClick={menuIconClick}>
             {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
@@ -35,11 +36,20 @@ const Sidebar = () => {
         </SidebarHeader>
         <SidebarContent>
           <Menu iconShape="square">
-            <MenuItem active={true} icon={<FiHome />}>
-              Log In
+            <MenuItem icon={<FiHome />}>
+              Home <Link to="/" />
             </MenuItem>
-            <MenuItem icon={<FaList />}>Products</MenuItem>
-            <MenuItem icon={<FaShoppingCart />}>Cart</MenuItem>
+            <MenuItem icon={<FiLogIn />}>
+              Login <Link to="/login" />
+            </MenuItem>
+            <MenuItem icon={<FaList />}>
+              Products
+              <Link to="/products" />
+            </MenuItem>
+            <MenuItem icon={<FaShoppingCart />}>
+              Cart
+              <Link to="/cart" />
+            </MenuItem>
           </Menu>
         </SidebarContent>
         <SidebarFooter>
