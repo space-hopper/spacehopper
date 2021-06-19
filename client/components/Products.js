@@ -1,40 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../redux/actions/ProductThunks';
+import ProductCard from './ProductCard';
+// import { addToCart } from '../redux/actions/CartThunks'
 
-function FrogPicList() {
-  const elements = [];
+class Products extends React.Component {
+  componentDidMount() {
+    this.props.loadProducts();
+    //  this.props.loadItemToCart();
+  }
 
-  for (let i = 0; i < 20; i++) {
-    elements.push(
-      <div key={i}>
-        {/* <Link to={`/products/${product.id}`}> */}
-        <img
-          className="productImage"
-          src="https://cdn11.bigcommerce.com/s-ob7m2s98/images/stencil/1000x1000/products/1171/10813/happy_frog__74222.1446407217.jpg?c=2"
-        />
-        {/* </Link> */}
-        <h2 className="productDescription">Jumping Frog</h2>
-        <h3 className="productDescription">$42.99</h3>
-        <div className="buttonDesign">
-          <button>Add To Cart</button>
+  render() {
+    const products = this.props.products;
+    console.log('products', products);
+    return (
+      <div className="products-page">
+        <p className="page-heading">All Products</p>
+        <div className="products-container">
+          {!products ? (
+            <h3>WHERE FOR ART OUR ITEMS</h3>
+          ) : (
+            products.map((item) => {
+              return <ProductCard key={item.id} item={item} />;
+            })
+          )}
         </div>
       </div>
     );
   }
-  return elements;
 }
 
-export default class Products extends React.Component {
-  render() {
-    return (
-      <>
-        <h1><span className="flipH">𓆏</span> SPACE HOPPER 𓆏 </h1>
-        <h1>THE PLACE TO HOP UP YOUR SPACE</h1>
-        <div className="productFormat">
-          <FrogPicList />
-          <div></div>
-        </div>
-      </>
-    );
-  }
-}
+const mapStateToProps = (state) => {
+  console.log('state', state);
+  return {
+    products: state.productReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  loadProducts: () => dispatch(fetchProducts()),
+  // loadItemToCart: (id) => dispatch(addToCart(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
