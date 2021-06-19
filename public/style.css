@@ -33,7 +33,10 @@ form div {
 
 .buttonDesign {
   background-color: rgb(158, 252, 158);
-  font-size: 22px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 0;
+  padding: 0.5rem 1rem;
 }
 
 .buttonSpacing {
