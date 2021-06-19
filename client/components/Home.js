@@ -6,10 +6,8 @@ export const Home = (props) => {
 
   return (
     <div className="home">
-      <h1>
-        <span>SPACE HOPPER</span>
-      </h1>
-      <h1>THE PLACE TO HOP UP YOUR SPACE</h1>
+      <p className="home-title">Space Hopper </p>
+      <p className="home-description">The Place to Hop Up your Space</p>
       {username && <h3>Welcome, {username}</h3>}
     </div>
   );
