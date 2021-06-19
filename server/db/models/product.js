@@ -10,10 +10,17 @@ const Product=db.define('product',{
         }
     },
     price:{
-        type:Sequelize.DECIMAL(10,2),
+        type:Sequelize.INTEGER,
+        //add methods to convert to and from pennies
         allowNull:false,
         validate:{
             min:0
+        },
+        get(){
+            return this.getDataValue('price')/100
+        },
+        set(priceToSet){
+            this.setDataValue('price',Math.floor(priceToSet*100))
         }
     },
     quantity:{

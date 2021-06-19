@@ -93,6 +93,7 @@ form div {
   margin: 0 auto;
   transform: skewY(11deg);
 }
+
 #sidebar {
   position: absolute;
   width: 220px;
