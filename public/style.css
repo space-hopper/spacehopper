@@ -33,7 +33,9 @@ form div {
 
 .buttonDesign {
   background-color: rgb(158, 252, 158);
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  font-weight: 500;
   border-radius: 5px;
   border: 0;
   padding: 0.5rem 1rem;
@@ -51,17 +53,23 @@ form div {
 }
 
 .productImage {
+  border-radius: 10px;
   width: 200px;
   height: 200px;
 }
 
 .itemName {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 1px;
   margin: 1rem 0;
 }
 
 .productPrice {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
+  letter-spacing: 1px;
   text-emphasis: bold;
 }
 

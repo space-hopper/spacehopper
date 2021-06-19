@@ -7,7 +7,7 @@ const ProductCard = ({ item }) => {
       <div className="itemName">{item.name}</div>
       <div className="productPrice">$ {item.price}</div>
       <div className="buttonSpacing">
-        <button className="buttonDesign">Future Button</button>
+        <button className="buttonDesign">Add to Cart</button>
       </div>
       {/* <button onClick={() => loadItemToCart(item)}>Add To Cart</button> */}
     </div>
