@@ -1,3 +1,8 @@
+#app {
+  display: flex;
+  position: relative;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -11,11 +16,10 @@ label {
 }
 
 h1 {
-  font-size: 150px;
-  font-weight: 300;
+  font-size: 4rem;
+  font-weight: 500;
   text-align: center;
 }
-
 
 nav a {
   display: inline-block;
@@ -29,38 +33,46 @@ form div {
 
 .buttonDesign {
   background-color: rgb(158, 252, 158);
-  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 0;
+  padding: 0.5rem 1rem;
 }
 
 .buttonSpacing {
   padding-top: 20px;
 }
 
-.productFormat {
-  padding-bottom: 30px;
-  display: flex;
-}
-
-.flexBox {
+.product-card {
   display: flex;
   flex-direction: column;
+  margin: 1rem 0;
+  align-items: center;
 }
 
 .productImage {
-  width: 350px;
-  height: 350px;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
 }
 
 .itemName {
-  font-size: 40px;
-  font-style: italic;
-  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 1rem 0;
 }
 
 .productPrice {
-  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
   text-emphasis: bold;
-  text-align: center;
 }
 
 .cartItem {
@@ -95,8 +107,11 @@ form div {
 }
 
 #sidebar {
-  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
   width: 220px;
+  top: 0px;
+  height: 100vh;
 }
 
 #sidebar .pro-sidebar {
@@ -162,6 +177,12 @@ form div {
   .pro-item-content {
   color: #000;
 }
+
+#sidebar .pro-item-content {
+  display: flex;
+  align-items: center;
+}
+
 #sidebar .pro-sidebar-inner .pro-sidebar-layout .active {
   background-image: linear-gradient(0deg, #41944f 0%, #aeeeb3 100%);
 }
@@ -169,3 +190,46 @@ form div {
   padding: 20px;
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(-220px + 100vw);
+  padding: 200px 50px 0;
+  background-color: #b8fcb6;
+  clip-path: polygon(0 0, 100% 24%, 100% 100%, 0 79%);
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px 5px;
+  justify-content: center;
+  align-items: center;
+  width: calc(-220px + 100vw);
+}
+
+.products-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.home-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.home-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
