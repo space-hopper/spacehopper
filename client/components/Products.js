@@ -32,7 +32,6 @@ export class Products extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state', state);
   return {
     products: state.productReducer,
   };

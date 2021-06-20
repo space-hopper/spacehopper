@@ -1,8 +1,8 @@
-import { FETCH_PRODUCTS } from './actions';
+import { SET_PRODUCTS } from './actions';
 import axios from 'axios'
 
 export const fetchTheProducts = (products) => ({
-  type: FETCH_PRODUCTS,
+  type: SET_PRODUCTS,
   products
 })
 
