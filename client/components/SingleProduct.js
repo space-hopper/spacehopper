@@ -28,7 +28,6 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE",state)
   return {
     product: state.product,
   };

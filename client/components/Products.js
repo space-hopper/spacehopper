@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../redux/actions/ProductThunks';
 import ProductCard from './ProductCard';
+
+
 // import { addToCart } from '../redux/actions/CartThunks'
 
 export class Products extends React.Component {
@@ -21,7 +23,7 @@ export class Products extends React.Component {
         <p className="page-heading">All Products</p>
         <div className="products-container">
           {!products ? (
-            <h3>WHERE FOR ART OUR ITEMS</h3>
+            <h3>YOU NEED SOME FROGS</h3>
           ) : (
             products.map((item) => {
               return <ProductCard key={item.id} item={item}  />;

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom'
 
 const ProductCard = ({ item }) => {
 
@@ -6,7 +7,7 @@ const [value, setValue] = useState(1);
 
   return (
     <div className="product-card">
-      <img className="productImage" src={item.imageURL} alt={item.name} />
+      <Link to={`/products/${item.id}`}><img className="productImage" src={item.imageURL} alt={item.name} /></Link>
       <div className="itemName">{item.name}</div>
       <div className="productPrice">$ {item.price}</div>
       <div className="buttonSpacing">
