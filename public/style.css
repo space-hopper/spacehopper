@@ -43,6 +43,18 @@ form div {
   padding: 0.5rem 1rem;
 }
 
+.buttonDesignQ {
+  background-color: rgb(158, 238, 252);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 0;
+  padding: 0.5rem 1rem;
+}
+
 .buttonSpacing {
   padding-top: 20px;
 }

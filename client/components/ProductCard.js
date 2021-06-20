@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const ProductCard = ({ item }) => {
+
+const [value, setValue] = useState(1);
+
   return (
     <div className="product-card">
       <img className="productImage" src={item.imageURL} alt={item.name} />
@@ -9,7 +12,11 @@ const ProductCard = ({ item }) => {
       <div className="buttonSpacing">
         <button className="buttonDesign">Add to Cart</button>
       </div>
-      {/* <button onClick={() => loadItemToCart(item)}>Add To Cart</button> */}
+      <div>
+        <button className="buttonDesignQ" onClick={() => setValue((value + 1))}>+</button>
+         <input className="quantityButton" onChange={e => setValue(e.target.value)}value={value} />
+         <button className="buttonDesignQ" onClick={() => setValue((value - 1))}>-</button>
+    </div>
     </div>
   );
 };

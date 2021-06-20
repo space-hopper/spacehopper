@@ -5,15 +5,17 @@ import ProductCard from './ProductCard';
 // import { addToCart } from '../redux/actions/CartThunks'
 
 export class Products extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
- componentDidMount(){
-   this.props.loadProducts();
-  //  this.props.loadItemToCart();
- }
+  componentDidMount() {
+    this.props.loadProducts();
+    //  this.props.loadItemToCart();
+  }
 
   render() {
     const products = this.props.products;
-    console.log('products', products);
     return (
       <div className="products-page">
         <p className="page-heading">All Products</p>
@@ -22,7 +24,7 @@ export class Products extends React.Component {
             <h3>WHERE FOR ART OUR ITEMS</h3>
           ) : (
             products.map((item) => {
-              return <ProductCard key={item.id} item={item} />;
+              return <ProductCard key={item.id} item={item}  />;
             })
           )}
         </div>

@@ -40,8 +40,8 @@ import Products, {
 } from "../../client/components/Products";
 import Routes from "../../client/Routes";
 
-describe("All Products", () => {
-  // We'll use this array of campuses as dummy data for testing purposes
+describe("Products", () => {
+  // We'll use this array of products as dummy data for testing purposes
   const products = [
     {
       id: 1,
@@ -249,9 +249,5 @@ describe("Navigation", () => {
       </Provider>
     );
     expect(wrapper.find(Products)).to.have.length(1);
-  });
-
-  it('*** navbar has links to "/products" and "/" (homepage)', () => {
-    throw new Error("replace this error with your own test");
   });
 });
