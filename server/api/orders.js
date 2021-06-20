@@ -36,14 +36,9 @@ router.put('/checkout/:orderId', async (req, res, next) => {
       res.status(403).json('This order has already been placed');
     else {
       const products = await order.getProducts();
+      console.log(products);
       const outOfStock = await products.reduce(async (accumulator, val) => {
-        const orderDetails = await OrderDetails.findOne({
-          where: {
-            productId: val.id,
-            orderId: order.id,
-          },
-        });
-        if (val.quantity < orderDetails.quantity) accumulator = true;
+        if (val.quantity < val.orderDetails.quantity) accumulator = true;
         return accumulator;
       }, false);
       if (outOfStock)
@@ -53,13 +48,10 @@ router.put('/checkout/:orderId', async (req, res, next) => {
         await order.save();
         for (let i = 0; i < products.length; i++) {
           const quantity = products[i].quantity;
-          const orderDetails = await OrderDetails.findOne({
-            where: {
-              productId: products[i].id,
-              orderId: order.id,
-            },
-          });
-          await products[i].set('quantity', quantity - orderDetails.quantity);
+          await products[i].set(
+            'quantity',
+            quantity - products[i].orderDetails.quantity,
+          );
           await products[i].save();
         }
         res.send(order);
