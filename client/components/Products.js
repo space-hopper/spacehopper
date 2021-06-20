@@ -4,7 +4,7 @@ import { fetchProducts } from '../redux/actions/ProductThunks';
 import ProductCard from './ProductCard';
 
 
-// import { addToCart } from '../redux/actions/CartThunks'
+// import { addToCart } from '../redux/actions/Car</Link>tThunks'
 
 export class Products extends React.Component {
   constructor(props) {

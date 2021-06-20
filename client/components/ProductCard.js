@@ -1,25 +1,32 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { addToCart } from '../redux/actions/CartThunks';
+import { connect } from 'react-redux';
 
 const ProductCard = ({ item }) => {
-
-const [value, setValue] = useState(1);
+  const [value, setValue] = useState(1);
 
   return (
     <div className="product-card">
-      <Link to={`/products/${item.id}`}><img className="productImage" src={item.imageURL} alt={item.name} /></Link>
+      <Link to={`/products/${item.id}`}>
+        <img className="productImage" src={item.imageURL} alt={item.name} />
+      </Link>
       <div className="itemName">{item.name}</div>
       <div className="productPrice">$ {item.price}</div>
       <div className="buttonSpacing">
-        <button className="buttonDesign">Add to Cart</button>
+        <button onClick={() => addToCart(item, value)} className="buttonDesign">
+          Add to Cart
+        </button>
       </div>
       <div>
-        <button className="buttonDesignQ" onClick={() => setValue((value + 1))}>+</button>
-         <input className="quantityButton" onChange={e => setValue(e.target.value)}value={value} />
-         <button className="buttonDesignQ" onClick={() => setValue((value - 1))}>-</button>
-    </div>
+      </div>
     </div>
   );
 };
 
-export default ProductCard;
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (product, count) => dispatch(addToCart(product, count)),
+  // loadItemToCart: (id) => dispatch(addToCart(id))
+});
+
+export default connect(null, mapDispatchToProps)(ProductCard);
