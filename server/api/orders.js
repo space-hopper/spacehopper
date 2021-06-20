@@ -36,7 +36,6 @@ router.put('/checkout/:orderId', async (req, res, next) => {
       res.status(403).json('This order has already been placed');
     else {
       const products = await order.getProducts();
-      console.log(products);
       const outOfStock = await products.reduce(async (accumulator, val) => {
         if (val.quantity < val.orderDetails.quantity) accumulator = true;
         return accumulator;
