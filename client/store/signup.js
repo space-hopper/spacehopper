@@ -12,7 +12,7 @@ export const setNewSignUp = () => {
 export const postNewSignup = (newMember) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post('/api/signup', newMember);
+      const { data: created } = await axios.post('/auth/signup', newMember);
       dispatch(setNewSignUp(created));
     } catch (error) {
       console.log('ERROR CREATING NEW SIGNUP', error);
