@@ -11,6 +11,7 @@ router.post('/:userId', async (req, res, next) => {
     next(err);
   }
 });
+
 router.get('/cart/:userId', async (req, res, next) => {
   try {
     const order = await Order.findAll({
@@ -62,9 +63,33 @@ router.put('/checkout/:orderId', async (req, res, next) => {
 });
 router.put('/:orderId/:productId', async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.productId);
     const order = await Order.findByPk(req.params.orderId);
-    await order.addProduct(product);
+    const product = await Product.findByPk(req.params.productId);
+    const productsInOrder = await order.getProducts();
+    if (
+      !productsInOrder.reduce((accumulator, val) => {
+        if (val.id == req.params.productId) accumulator = true;
+        return accumulator;
+      }, false)
+    )
+      await order.addProduct(product);
+    else {
+      console.log(
+        productsInOrder.filter(
+          (val) =>
+            val.orderDetails.orderId == req.params.orderId &&
+            val.orderDetails.productId == req.params.productId,
+        )[0],
+      );
+      await productsInOrder
+        .filter(
+          (val) =>
+            val.orderDetails.orderId == req.params.orderId &&
+            val.orderDetails.productId == req.params.productId,
+        )[0]
+        .orderDetails.update({ quantity: parseInt(req.body.quantity, 10) });
+      console.log(req.body.quantity);
+    }
     res.json(order);
   } catch (err) {
     next(err);
