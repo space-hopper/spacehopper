@@ -18,11 +18,9 @@ const ProductCard = ({ item }) => {
           Add to Cart
         </button>
       </div>
-      <div>
       </div>
-    </div>
-  );
-};
+      )
+}
 
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (product, count) => dispatch(addToCart(product, count)),
