@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSingleProduct } from '../store/products';
+import { fetchSingleProduct } from '../redux/reducers/singleProductReducer';
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -31,7 +31,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('STATE', state);
+
   return {
     product: state.product,
   };

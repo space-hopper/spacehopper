@@ -1,20 +1,36 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../redux/actions/CartThunks';
+import { connect } from 'react-redux';
 
 const ProductCard = ({ item }) => {
+  const [value, setValue] = useState(1);
+
   return (
     <div className="product-card">
-      <img className="productImage" src={item.imageURL} alt={item.name} />
-      <Link to={`/products/${item.id}`} className="itemName">
-        {item.name}
+      <Link to={`/products/${item.id}`}>
+        <img className="productImage" src={item.imageURL} alt={item.name} />
       </Link>
+      <div className="itemName">{item.name}</div>
       <div className="productPrice">$ {item.price}</div>
       <div className="buttonSpacing">
-        <button className="buttonDesign">Add to Cart</button>
+        <button onClick={() => addToCart(item, value)} className="buttonDesign">
+          Add to Cart
+        </button>
       </div>
-      {/* <button onClick={() => loadItemToCart(item)}>Add To Cart</button> */}
+      <div>
+      </div>
     </div>
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (product, count) => dispatch(addToCart(product, count)),
+  // loadItemToCart: (id) => dispatch(addToCart(id))
+});
+
+export default connect(null, mapDispatchToProps)(ProductCard);
+
 export default ProductCard;
+

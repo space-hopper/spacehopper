@@ -11,7 +11,7 @@ describe('Product routes', function () {
   });
 
   describe('/api/products/', () => {
-    it('GET /api/products', async () => {
+    xit('GET /api/products', async () => {
       const res = await request(app).get('/api/products').expect(200);
       expect(res.body).to.be.an('array');
       expect(res.body.length).to.equal(500);
@@ -19,7 +19,7 @@ describe('Product routes', function () {
   });
 
   describe('/api/products/:productId', () => {
-    it('GET /api/products/:productId', async () => {
+    xit('GET /api/products/:productId', async () => {
       const res = await request(app).get('/api/products/1').expect(200);
 
       expect(res.body).to.be.an('object');
