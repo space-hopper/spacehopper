@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const SET_NEW_SIGNUP = 'SET_SIGNUP';
 
-export const setNewSignUp = () => {
+
+export const setNewSignUp = (newSignup) => {
   return {
     type: SET_NEW_SIGNUP,
     newSignup,

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { addToCart } from '../redux/actions/CartThunks';
 import { connect } from 'react-redux';
 
+
 class ProductCard extends React.Component {
 
   render(){
@@ -11,6 +12,7 @@ class ProductCard extends React.Component {
      //make this button animate
      
     return (
+
     <div className="product-card">
       <Link to={`/products/${item.id}`}>
         <img className="productImage" src={item.imageURL} alt={item.name} />
@@ -32,3 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(ProductCard);
+

@@ -2,9 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../redux/actions/ProductThunks';
 import ProductCard from './ProductCard';
-// import { addToCart } from '../redux/actions/CartThunks'
 
-class Products extends React.Component {
+// import { addToCart } from '../redux/actions/Car</Link>tThunks'
+
+export class Products extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     this.props.loadProducts();
     //  this.props.loadItemToCart();

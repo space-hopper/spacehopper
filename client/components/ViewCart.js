@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 const Cart = (props) => {
-  console.log('props', props);
   const [value, setValue] = useState(1);
   const cartItems = props.cartItem.cartItems;
   return (
