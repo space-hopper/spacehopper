@@ -22,7 +22,7 @@ class Signup extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props({ ...this.state });
+    this.props.createNewMember({ ...this.state });
     this.setState({ firstName: '', lastName: '', email: '', password: '' });
   }
   render() {
@@ -30,7 +30,7 @@ class Signup extends React.Component {
     const { firstName, lastName, email, password } = this.state;
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
             <input name="email" onChange={this.handleChange} value={email} />
@@ -76,7 +76,7 @@ const mapSignup = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createNewMember: dispatch(postNewSignup()),
+    createNewMember: (newMember) => dispatch(postNewSignup(newMember)),
   };
 };
 
