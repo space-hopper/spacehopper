@@ -11,7 +11,7 @@ const Cart = (props) => {
           <div className="product-card" key={item.id}>
             <img className="productImage" src={item.imageURL} alt={item.name} />
             <div className="itemName">{item.name}</div>
-            <div className="productPrice">$ {item.price}</div>
+            <div className="productPrice">$ {item.price.toFixed(2)}</div>
             <div className="buttonSpacing"></div>
             <button
               className="buttonDesignQ"
