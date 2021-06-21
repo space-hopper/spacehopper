@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../redux/actions/CartThunks';
@@ -19,8 +18,7 @@ const ProductCard = ({ item }) => {
           Add to Cart
         </button>
       </div>
-      <div>
-      </div>
+      <div></div>
     </div>
   );
 };
@@ -31,6 +29,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(ProductCard);
-
-export default ProductCard;
-
