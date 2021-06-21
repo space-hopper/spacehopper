@@ -74,13 +74,6 @@ router.put('/:orderId/:productId', async (req, res, next) => {
     )
       await order.addProduct(product);
     else {
-      console.log(
-        productsInOrder.filter(
-          (val) =>
-            val.orderDetails.orderId == req.params.orderId &&
-            val.orderDetails.productId == req.params.productId,
-        )[0],
-      );
       await productsInOrder
         .filter(
           (val) =>
@@ -88,7 +81,6 @@ router.put('/:orderId/:productId', async (req, res, next) => {
             val.orderDetails.productId == req.params.productId,
         )[0]
         .orderDetails.update({ quantity: parseInt(req.body.quantity, 10) });
-      console.log(req.body.quantity);
     }
     res.json(order);
   } catch (err) {
