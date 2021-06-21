@@ -1,6 +1,8 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from './actions';
+import axios from 'axios';
 
-export const addToCart = (product, count) => async (dispatch, getState) => {
+export const addToCart = (product, count) => {
+  return async (dispatch, getState) => {
   //Grabbing the current items in the cart so that we can tell if that product already exists in the cart
   const cartItems = getState().cart.cartItems.slice();
   let alreadyExists = false;
@@ -29,8 +31,8 @@ export const addToCart = (product, count) => async (dispatch, getState) => {
       payload: cartItems,
     });
   }
-};
-
+}
+}
 // export const removeFromCart = (product) => (dispatch, getState) => {
 //   const cartItems = getState()
 //     .cart.cartItems.slice()

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { addToCart } from '../redux/actions/CartThunks';
 import { connect } from 'react-redux';
 
-const ProductCard = ({ item }) => {
-  const [value, setValue] = useState(1);
+class ProductCard extends React.Component {
 
-  return (
+  render(){
+    const item = this.props.item;
+
+    return (
     <div className="product-card">
       <Link to={`/products/${item.id}`}>
         <img className="productImage" src={item.imageURL} alt={item.name} />
@@ -14,12 +16,15 @@ const ProductCard = ({ item }) => {
       <div className="itemName">{item.name}</div>
       <div className="productPrice">$ {item.price}</div>
       <div className="buttonSpacing">
-        <button onClick={() => addToCart(item, value)} className="buttonDesign">
+        <button onClick={() => { 
+          alert('click')
+          this.props.addToCart(item, 1)}} className="buttonDesign">
           Add to Cart
         </button>
       </div>
       </div>
       )
+   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
