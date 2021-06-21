@@ -246,8 +246,6 @@ form div {
   font-size: 2rem;
   text-align: center;
 }
-<<<<<<< HEAD
-=======
 
 .single-product {
   display: flex;
@@ -258,4 +256,3 @@ form div {
   height: 100vh;
   width: calc(-220px + 100vw);
 }
->>>>>>> b399a7c983da6defebe121ffb2a186ab247faab4

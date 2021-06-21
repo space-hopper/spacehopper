@@ -24,7 +24,6 @@ const ProductCard = ({ item }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (product, count) => dispatch(addToCart(product, count)),
-  // loadItemToCart: (id) => dispatch(addToCart(id))
 });
 
 export default connect(null, mapDispatchToProps)(ProductCard);

@@ -17,7 +17,7 @@ export const addToCart = (product, count) => async (dispatch, getState) => {
   // If the user is not logged in, save this cart in their local storage
   const user = getState().auth;
   if (user.id) {
-    const res = await axios.get(`/api/orders/${user.id}`);
+    const res = await axios.get(`/api/orders/cart/${user.id}`);
     dispatch({
       type: ADD_TO_CART,
       payload: cartItems,
