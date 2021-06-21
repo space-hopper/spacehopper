@@ -74,13 +74,17 @@ router.put('/:orderId/:productId', async (req, res, next) => {
     )
       await order.addProduct(product);
     else {
-      await productsInOrder
-        .filter(
-          (val) =>
-            val.orderDetails.orderId == req.params.orderId &&
-            val.orderDetails.productId == req.params.productId,
-        )[0]
-        .orderDetails.update({ quantity: parseInt(req.body.quantity, 10) });
+      if (req.body.quantity == 0) {
+        await order.removeProduct(product);
+      } else {
+        await productsInOrder
+          .filter(
+            (val) =>
+              val.orderDetails.orderId == req.params.orderId &&
+              val.orderDetails.productId == req.params.productId,
+          )[0]
+          .orderDetails.update({ quantity: parseInt(req.body.quantity, 10) });
+      }
     }
     res.json(order);
   } catch (err) {
