@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -12,10 +13,10 @@ const AuthForm = props => {
     <div>
       <form onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="username">
-            <small>Username</small>
+          <label htmlFor="email">
+            <small>Email</small>
           </label>
-          <input name="username" type="text" />
+          <input name="email" type="email" />
         </div>
         <div>
           <label htmlFor="password">
@@ -26,6 +27,7 @@ const AuthForm = props => {
         <div>
           <button type="submit">{displayName}</button>
         </div>
+        <p>Don't have an account with us? <Link to="/signup" >Sign up</Link></p>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </div>
@@ -47,13 +49,13 @@ const mapLogin = state => {
   }
 }
 
-const mapSignup = state => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
+// const mapSignup = state => {
+//   return {
+//     name: 'signup',
+//     displayName: 'Sign Up',
+//     error: state.auth.error
+//   }
+// }
 
 const mapDispatch = dispatch => {
   return {
@@ -68,4 +70,4 @@ const mapDispatch = dispatch => {
 }
 
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+// export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
