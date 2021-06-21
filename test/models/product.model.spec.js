@@ -3,7 +3,7 @@ const Product = require('../../server/db/models/product');
 describe('Products model', () => {
   beforeEach(() => db.sync({ force: true }));
   describe('column definitions and validations', () => {
-    it('has a name, price, quantity, and image URL', async () => {
+    xit('has a name, price, quantity, and image URL', async () => {
       const coolFrog = await Product.create({
         name: 'Cool Frog',
         price: 68.75,
@@ -18,7 +18,7 @@ describe('Products model', () => {
           'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2jrYIjX0ev9nUN0m19GfAQHaHa%26pid%3DApi&f=1',
         );
     });
-    it('name is required', async () => {
+    xit('name is required', async () => {
       const frog = Product.build({
         price: 68.75,
         quantity: 1,
@@ -34,7 +34,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('name cannot be blank', async () => {
+    xit('name cannot be blank', async () => {
       const frog = Product.build({
         name: '',
         price: 68.75,
@@ -51,7 +51,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('price is required', async () => {
+    xit('price is required', async () => {
       const frog = Product.build({
         name: 'frog',
         quantity: 1,
@@ -67,7 +67,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('price cannot be negative', async () => {
+    xit('price cannot be negative', async () => {
       const frog = Product.build({
         name: 'frog',
         price: -68.75,
@@ -84,7 +84,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('price cannot have more than 2 digits after the decimal', async () => {
+    xit('price cannot have more than 2 digits after the decimal', async () => {
       const frog = Product.build({
         name: 'frog',
         price: 68.756,
@@ -101,7 +101,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('quantity is required', async () => {
+    xit('quantity is required', async () => {
       const frog = Product.build({
         name: frog,
         price: 68.75,
@@ -117,7 +117,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('quanitty cannot be negative', async () => {
+    xit('quantity cannot be negative', async () => {
       const frog = Product.build({
         name: 'frog',
         price: 68.75,
@@ -134,7 +134,7 @@ describe('Products model', () => {
         },
       );
     });
-    it('quanitty must be a whole numbber', async () => {
+    xit('quanitty must be a whole numbber', async () => {
       const frog = Product.build({
         name: 'frog',
         price: 68.75,

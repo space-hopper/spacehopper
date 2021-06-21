@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { SET_SINGLE_PRODUCT } from '../actions/actions';
 
-const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT';
 const initialState = [];
 
 export const setSingleProduct = (product) => {
