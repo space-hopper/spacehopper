@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
 
 
-export class Cart extends React.Component {
 
+const Cart = ({cartItem}) => {
 
-  render(){
     const [value, setValue] = useState(1);
-    const cartItem = this.props.cartItem;
 
     return (
     <div className="product-card">
-        <img className="productImage" src={cartItem.imageURL} alt={product.name} />
+        <img className="productImage" src={cartItem.imageURL} alt={cartItem.name} />
       <div className="itemName">{cartItem.name}</div>
       <div className="productPrice">$ {cartItem.price}</div>
       <div className="buttonSpacing">
@@ -34,11 +32,12 @@ export class Cart extends React.Component {
         </div>
         )
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+  cartItem: state.cart
+}
 }
 
-
-const mapStateToProps = (cartItem) => {
-  cartItem = state.cartItem
-}
-
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, null)(Cart);
