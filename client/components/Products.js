@@ -26,7 +26,6 @@ export class Products extends React.Component {
           ) : (
             products.map((item) => {
               return <ProductCard key={item.id} item={item}  />;
-
             })
           )}
         </div>

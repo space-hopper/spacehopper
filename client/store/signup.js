@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const SET_NEW_SIGNUP = 'SET_SIGNUP';
 
+
 export const setNewSignUp = (newSignup) => {
   return {
     type: SET_NEW_SIGNUP,
@@ -14,7 +15,6 @@ export const postNewSignup = (newMember) => {
     try {
       const { data: created } = await axios.post('/auth/signup', newMember);
       dispatch(setNewSignUp(created));
-      console.log('post new sign up>>', created);
     } catch (error) {
       console.log('ERROR CREATING NEW SIGNUP', error);
     }

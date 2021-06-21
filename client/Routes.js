@@ -11,6 +11,7 @@ import Signup from './components/Signup';
 import ViewCart from './components/ViewCart';
 
 
+
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
@@ -33,8 +34,8 @@ class Routes extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
-
             <Route exact path="/cart" component={ViewCart} />
+
 
           </Switch>
         )}
