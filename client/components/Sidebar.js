@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
   ProSidebar,
   Menu,
@@ -16,8 +16,10 @@ import {
   FiArrowLeftCircle,
   FiArrowRightCircle,
 } from 'react-icons/fi';
+import { connect } from 'react-redux';
+import { logout } from '../store/auth';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
 
   const menuIconClick = () => {
@@ -54,7 +56,11 @@ const Sidebar = () => {
         </SidebarContent>
         <SidebarFooter>
           <Menu iconShape="square">
-            <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+            <MenuItem icon={<FiLogOut />}>
+              Logout
+              <Link to="/" onClick={() => props.logout()} />
+              {/* <Redirect to="/" /> */}
+            </MenuItem>
           </Menu>
         </SidebarFooter>
       </ProSidebar>
@@ -62,4 +68,9 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
+export default connect(null, mapDispatchToProps)(Sidebar);
