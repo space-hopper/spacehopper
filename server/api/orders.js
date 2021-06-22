@@ -87,6 +87,13 @@ router.put('/:orderId/:productId', async (req, res, next) => {
             { quantity: req.body.quantity },
             { individualHooks: true },
           );
+        await productsInOrder
+          .filter(
+            (val) =>
+              val.orderDetails.orderId == req.params.orderId &&
+              val.orderDetails.productId == req.params.productId,
+          )[0]
+          .orderDetails.save();
       }
     }
     res.json(order);
