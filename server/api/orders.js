@@ -64,16 +64,16 @@ router.put('/checkout/:orderId', async (req, res, next) => {
 router.put('/:orderId/:productId', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
-    const product = await Product.findByPk(req.params.productId);
     const productsInOrder = await order.getProducts();
+    const product = await Product.findByPk(req.params.productId);
     if (
       !productsInOrder.reduce((accumulator, val) => {
         if (val.id == req.params.productId) accumulator = true;
         return accumulator;
       }, false)
-    )
-      await order.addProduct(product);
-    else {
+    ) {
+      await order.addProduct(product, { individualHooks: true });
+    } else {
       if (req.body.quantity == 0) {
         await order.removeProduct(product);
       } else {
