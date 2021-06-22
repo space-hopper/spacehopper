@@ -18,6 +18,9 @@ export const addToCart = (product, count) => {
   }
   // If the user is logged in, save this cart in our backend by making an axios call
   // If the user is not logged in, save this cart in their local storage
+
+  // check local storage and add items to the cart once they log in
+
   const user = getState().auth;
   if (user.id) {
     const res = await axios.get(`/api/orders/cart/${user.id}`);

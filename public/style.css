@@ -208,6 +208,11 @@ form div {
 #sidebar .logo {
   padding: 20px;
 }
+#header {
+  position: absolute;
+  width: 220px;
+}
+
 
 .home {
   display: flex;
