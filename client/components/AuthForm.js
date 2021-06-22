@@ -7,32 +7,38 @@ import { Link } from 'react-router-dom';
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, error } = props;
+  const { name, displayName, handleSubmit, error, isLoggedIn } = props;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <>
+      {isLoggedIn ? (
+        <h1>Welcome!</h1>
+      ) : (
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="email" />
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <input name="email" type="email" />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <input name="password" type="password" />
+            </div>
+            <div>
+              <button type="submit">{displayName}</button>
+            </div>
+            <p>
+              Don't have an account with us? <Link to="/signup">Sign up</Link>
+            </p>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        <p>
-          Don't have an account with us? <Link to="/signup">Sign up</Link>
-        </p>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
@@ -48,6 +54,7 @@ const mapLogin = (state) => {
     name: 'login',
     displayName: 'Login',
     error: state.auth.error,
+    isLoggedIn: !!state.auth.id,
   };
 };
 
