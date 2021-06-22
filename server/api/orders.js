@@ -11,6 +11,7 @@ router.post('/:userId', async (req, res, next) => {
     next(err);
   }
 });
+
 router.get('/cart/:userId', async (req, res, next) => {
   try {
     const order = await Order.findAll({
@@ -62,9 +63,39 @@ router.put('/checkout/:orderId', async (req, res, next) => {
 });
 router.put('/:orderId/:productId', async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.productId);
     const order = await Order.findByPk(req.params.orderId);
-    await order.addProduct(product);
+    const productsInOrder = await order.getProducts();
+    const product = await Product.findByPk(req.params.productId);
+    if (
+      !productsInOrder.reduce((accumulator, val) => {
+        if (val.id == req.params.productId) accumulator = true;
+        return accumulator;
+      }, false)
+    ) {
+      await order.addProduct(product, { individualHooks: true });
+    } else {
+      if (req.body.quantity == 0) {
+        await order.removeProduct(product);
+      } else {
+        await productsInOrder
+          .filter(
+            (val) =>
+              val.orderDetails.orderId == req.params.orderId &&
+              val.orderDetails.productId == req.params.productId,
+          )[0]
+          .orderDetails.update(
+            { quantity: req.body.quantity },
+            { individualHooks: true },
+          );
+        await productsInOrder
+          .filter(
+            (val) =>
+              val.orderDetails.orderId == req.params.orderId &&
+              val.orderDetails.productId == req.params.productId,
+          )[0]
+          .orderDetails.save();
+      }
+    }
     res.json(order);
   } catch (err) {
     next(err);
