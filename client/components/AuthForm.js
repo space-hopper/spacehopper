@@ -12,7 +12,7 @@ const AuthForm = (props) => {
   return (
     <>
       {isLoggedIn ? (
-        <h1>Welcome!</h1>
+        <h3 className="home">Welcome, Space Hopper Shopper!</h3>
       ) : (
         <div>
           <form onSubmit={handleSubmit} name={name}>
