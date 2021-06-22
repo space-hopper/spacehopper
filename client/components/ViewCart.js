@@ -26,7 +26,7 @@ const Cart = (props) => {
             />
             <button
               className="buttonDesignQ"
-              onClick={() => setValue(value - 1)}
+              onClick={() => {value > 0 ? setValue(value - 1) : ''}}
             >
               -
             </button>

@@ -91,8 +91,6 @@ const frogImages = [
 
   'https://sep.yimg.com/ay/yhst-17215606132318/pecoware-frog-best-buddy-kids-plush-slippers-2.gif',
 
-  'https://lh3.googleusercontent.com/proxy/4jb1gdgRwFUgRnuU4ov3Kttw25WMCmUCYwWv9pCh63Sa_2yUTHkKgug5NfMwkSPvLEFumh9NUvmHv_4hlQmMbt-JQPrKQMX-LWarwIwEse4tfYu-VjnAzF72vmrXyTpJ83w',
-
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSptVC7fAfbQLpUFDhwujLriN-P9uIo1rlEOA&usqp=CAU',
 
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoGKtDLUHqnlKa25TjRRQh85kx6YNarNzjk4gG5HI0meT0j48ME4UVPRE3jkrojs6vSMcmPRc&usqp=CAc',
