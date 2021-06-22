@@ -83,7 +83,10 @@ router.put('/:orderId/:productId', async (req, res, next) => {
               val.orderDetails.orderId == req.params.orderId &&
               val.orderDetails.productId == req.params.productId,
           )[0]
-          .orderDetails.update({ quantity: parseInt(req.body.quantity, 10) });
+          .orderDetails.update(
+            { quantity: req.body.quantity },
+            { individualHooks: true },
+          );
       }
     }
     res.json(order);
