@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addToCart } from '../redux/actions/CartThunks';
 import { fetchSingleProduct } from '../redux/reducers/singleProductReducer';
 
 class SingleProduct extends React.Component {
@@ -24,7 +25,14 @@ class SingleProduct extends React.Component {
           This quality decor item will undoubtedly add some amphibian charm to
           any space!
         </p>
-        <button className="buttonDesign">Add To Cart</button>
+        <button
+          className="buttonDesign"
+          onClick={() => {
+            this.props.addToCart(this.props.product.product, 1);
+          }}
+        >
+          Add To Cart
+        </button>
       </div>
     );
   }
@@ -39,6 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
+    addToCart: (product, count) => dispatch(addToCart(product, count)),
   };
 };
 
