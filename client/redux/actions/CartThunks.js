@@ -3,41 +3,77 @@ import axios from 'axios';
 
 export const addToCart = (product, count) => {
   return async (dispatch, getState) => {
-
-  //Grabbing the current items in the cart so that we can tell if that product already exists in the cart
-  const cartItems = getState().cart.cartItems.slice();
-  let alreadyExists = false;
-  cartItems.forEach((item) => {
-    if (item.id === product.id) {
-      alreadyExists = true;
-      item.count += count;
+    //Grabbing the current items in the cart so that we can tell if that product already exists in the cart
+    const cartItems = getState().cart.cartItems.slice();
+    let alreadyExists = false;
+    cartItems.forEach((item) => {
+      if (item.id === product.id) {
+        alreadyExists = true;
+        item.count += count;
+      }
+    });
+    if (!alreadyExists) {
+      cartItems.push({ ...product, count: count });
     }
-  });
-  if (!alreadyExists) {
-    cartItems.push({ ...product, count: count });
-  }
-  // If the user is logged in, save this cart in our backend by making an axios call
-  // If the user is not logged in, save this cart in their local storage
+    // If the user is logged in, save this cart in our backend by making an axios call
+    // If the user is not logged in, save this cart in their local storage
 
-  // check local storage and add items to the cart once they log in
+    // check local storage and add items to the cart once they log in
 
-  const user = getState().auth;
-  if (user.id) {
-    const res = await axios.get(`/api/orders/cart/${user.id}`);
+    const user = getState().auth;
+    if (user.id) {
+      const res = await axios.get(`/api/orders/cart/${user.id}`);
 
-    dispatch({
-      type: ADD_TO_CART,
-      payload: cartItems,
+      dispatch({
+        type: ADD_TO_CART,
+        payload: cartItems,
+      });
+    } else {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      dispatch({
+        type: ADD_TO_CART,
+        payload: cartItems,
+      });
+    }
+  };
+};
+
+export const removeFromCart = (product, count) => {
+  return async (dispatch, getState) => {
+    //Grabbing the current items in the cart so that we can tell if that product already exists in the cart
+    const cartItems = getState().cart.cartItems.slice();
+    let alreadyExists = false;
+    cartItems.forEach((item) => {
+      if (item.id === product.id) {
+        alreadyExists = true;
+        item.count -= count;
+      }
     });
-  } else {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    dispatch({
-      type: ADD_TO_CART,
-      payload: cartItems,
-    });
-  }
-}
-}
+    if (!alreadyExists) {
+      cartItems.push({ ...product, count: count });
+    }
+    // If the user is logged in, save this cart in our backend by making an axios call
+    // If the user is not logged in, save this cart in their local storage
+
+    // check local storage and add items to the cart once they log in
+
+    const user = getState().auth;
+    if (user.id) {
+      const res = await axios.get(`/api/orders/cart/${user.id}`);
+
+      dispatch({
+        type: REMOVE_FROM_CART,
+        payload: cartItems,
+      });
+    } else {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      dispatch({
+        type: REMOVE_FROM_CART,
+        payload: cartItems,
+      });
+    }
+  };
+};
 
 // export const removeFromCart = (product) => (dispatch, getState) => {
 //   const cartItems = getState()
