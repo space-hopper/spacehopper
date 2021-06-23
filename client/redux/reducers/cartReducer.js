@@ -14,9 +14,13 @@ export const cartReducer = (state = initialState, action) => {
     case CREATE_ORDER:
       return { ...state, cartItems: action.products };
     case ADD_TO_CART:
-      if (action.isLoggedIn) {
-        // const newCartItems = [...action.newItems];
-        return { ...state, cartItems: action.newItems };
+      if (action.loggedIn) {
+        const newCartItems = action.newItems.map((val) => {
+          let result = { ...val };
+          result.count = val.orderDetails.quantity;
+          return result;
+        });
+        return { ...state, cartItems: newCartItems };
       } else {
         // checking if the product already exists in the cart
         if (
