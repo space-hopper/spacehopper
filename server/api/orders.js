@@ -15,12 +15,15 @@ router.post('/:userId', async (req, res, next) => {
 router.get('/cart/:userId', async (req, res, next) => {
   try {
     const order = await Order.findAll({
-      include: {
-        model: User,
-        where: {
-          id: req.params.userId,
+      include: [
+        {
+          model: User,
+          where: {
+            id: req.params.userId,
+          },
         },
-      },
+        { model: Product },
+      ],
       where: {
         status: 'cart',
       },
