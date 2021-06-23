@@ -16,17 +16,27 @@ const ViewCart = (props) => {
 
   const increaseQuantity = (index) => {
     const currentItems = [...cartItems];
-    setCount(count + 1);
-    console.log('count', count);
-    props.addToCart(currentItems[index], count);
+    // setCount(count + 1);
+    // console.log('count', count);
+    // props.addToCart(currentItems[index], count);
+    console.log('currentItems[index]', currentItems[index]);
+    props.addToCart(
+      currentItems[index],
+      currentItems[index].orderDetails.quantity + 1,
+    );
   };
 
   const decreaseQuantity = (index) => {
     const currentItems = [...cartItems];
-    if (currentItems[index].count > 0) {
-      setCount(count - 1);
-      props.removeFromCart(currentItems[index], count);
-    }
+    // if (currentItems[index].count > 0) {
+    //   setCount(count - 1);
+    //   props.removeFromCart(currentItems[index], count);
+    // }
+    console.log('currentItems[index]', currentItems[index]);
+    props.addToCart(
+      currentItems[index],
+      currentItems[index].orderDetails.quantity - 1,
+    );
   };
   useEffect(() => {
     props.userCart(props.auth.id);
@@ -74,7 +84,7 @@ const ViewCart = (props) => {
               <input
                 className="quantityInput"
                 onChange={(e) => setCount(e.target.value)}
-                value={item.count}
+                value={item.orderDetails.quantity}
               />
               <button
                 className="buttonDesignQ"

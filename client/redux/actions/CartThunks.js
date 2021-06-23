@@ -44,20 +44,20 @@ export const addToCart = (product, count) => {
       const res = await axios.get(`/api/orders/cart/${user.id}`);
       const productId = product.id;
       const orderId = res.data[0].id;
-      const orderInfo = (
+      newItems = (
         await axios.put(`/api/orders/${orderId}/${productId}`, {
           quantity: count,
         })
       ).data;
-      newItems = orderInfo.map((val) => {
-        return {
-          id: val.id,
-          name: val.name,
-          imageURL: val.imageURL,
-          count: val.orderDetails.quantity,
-          price: val.price,
-        };
-      });
+      // newItems = orderInfo.map((val) => {
+      //   return {
+      //     id: val.id,
+      //     name: val.name,
+      //     imageURL: val.imageURL,
+      //     count: val.orderDetails.quantity,
+      //     price: val.price,
+      //   };
+      // });
     } else {
       // localStorage.setItem('cartItems', JSON.stringify(cartItems));
       newItems = [{ ...product, count }];
