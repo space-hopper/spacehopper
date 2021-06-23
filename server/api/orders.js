@@ -15,12 +15,15 @@ router.post('/:userId', async (req, res, next) => {
 router.get('/cart/:userId', async (req, res, next) => {
   try {
     const order = await Order.findAll({
-      include: {
-        model: User,
-        where: {
-          id: req.params.userId,
+      include: [
+        {
+          model: User,
+          where: {
+            id: req.params.userId,
+          },
         },
-      },
+        { model: Product },
+      ],
       where: {
         status: 'cart',
       },
@@ -30,6 +33,7 @@ router.get('/cart/:userId', async (req, res, next) => {
     next(err);
   }
 });
+
 router.put('/checkout/:orderId', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
@@ -96,7 +100,7 @@ router.put('/:orderId/:productId', async (req, res, next) => {
           .orderDetails.save();
       }
     }
-    res.json(order);
+    res.json(await order.getProducts());
   } catch (err) {
     next(err);
   }

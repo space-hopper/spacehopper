@@ -10,7 +10,7 @@ class ProductCard extends React.Component {
     //make this button animate
 
     return (
-      <div className="product-card">
+      <div className="products-page">
         <Link to={`/products/${item.id}`}>
           <img className="productImage" src={item.imageURL} alt={item.name} />
         </Link>
