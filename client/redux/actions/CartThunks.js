@@ -41,9 +41,7 @@ export const addToCart = (product, count) => {
     let newItems;
     if (user.id) {
       const res = await axios.get(`/api/orders/cart/${user.id}`);
-      console.log("product in CartThunks", product)
       const productId = product.id;
-      console.log("productId", productId)
       const orderId = res.data[0].id;
       const orderInfo = (
         await axios.put(
@@ -82,7 +80,7 @@ export const removeFromCart = (product, count) => {
     cartItems.forEach((item) => {
       if (item.id === product.id) {
         alreadyExists = true;
-        item.count -= count;
+        item.count -= 1;
       }
     });
     if (!alreadyExists) {

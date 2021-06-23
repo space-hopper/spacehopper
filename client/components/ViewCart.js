@@ -12,16 +12,16 @@ const ViewCart = (props) => {
 
   const increaseQuantity = (index) => {
     const currentItems = [...cartItems];
-    setCount(currentItems);
-    console.log("currentItems[index]", currentItems[index])
-    props.addToCart(currentItems[index], count + 1);
+    setCount(count + 1);
+    console.log("count", count);
+    props.addToCart(currentItems[index], count);
   };
 
   const decreaseQuantity = (index) => {
     const currentItems = [...cartItems];
     if (currentItems[index].count > 0) {
-      setCount(currentItems);
-      props.removeFromCart(currentItems[index], count - 1);
+      setCount(count - 1);
+      props.removeFromCart(currentItems[index], count);
     }
   };
 
