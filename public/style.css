@@ -47,7 +47,7 @@ form div {
 }
 
 .buttonDesignQ {
-  background-color: rgb(158, 238, 252);
+  background-color: #b8fcb6;;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 500;
@@ -77,6 +77,16 @@ form div {
   height: 200px;
 }
 
+.productImage-card {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+.productImage-card:hover {
+  border: 10px solid red;
+}
+
 .itemName {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
@@ -94,20 +104,6 @@ form div {
   text-emphasis: bold;
 }
 
-.cartItem {
-  width: 160px;
-  height: 160px;
-}
-
-.cartSidebar {
-  float: right;
-}
-
-.iconSize {
-  background-image: './cart-icon.png';
-  width: 45px;
-  height: 45px;
-}
 
 .flipH {
   position: absolute;
@@ -213,6 +209,26 @@ form div {
   width: 220px;
 }
 
+.cart-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px 5px;
+  justify-content: center;
+  align-items: center;
+  width: calc(-220px + 100vw);
+  padding: 20px;
+}
+
+.cart-total {
+  font-size: 40px;
+  text-align: center;
+  border: 2px solid rgb(78, 78, 78);
+  background-color: rgb(236, 255, 208);
+  padding-left: 50px;
+  padding-right: 50px;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+}
 
 .home {
   display: flex;
@@ -234,6 +250,12 @@ form div {
 }
 
 .products-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -267,4 +289,16 @@ form div {
   height: 100vh;
   width: calc(-220px + 100vw);
 }
+
+.quantityInput {
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
+
+/* hover to remove */
 
