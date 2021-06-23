@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import auth from '../store/auth';
 import { Login } from './AuthForm';
-import { addToCart, removeFromCart } from '../redux/actions/CartThunks';
+import {
+  addToCart,
+  removeFromCart,
+  userCart,
+} from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
   const [count, setCount] = useState(1);
@@ -24,7 +28,9 @@ const ViewCart = (props) => {
       props.removeFromCart(currentItems[index], count);
     }
   };
-
+  useEffect(() => {
+    props.userCart(props.auth.id);
+  }, [props.auth]);
   const handleItemDelete = (index) => {
     props.addToCart(cartItems[index], 0);
   };
@@ -33,11 +39,17 @@ const ViewCart = (props) => {
     <div>
       <div className="cart-total">
         Total:{' $'}
-        {cartItems
-          .reduce((a, c) => {
-            return a + c.price * c.count;
-          }, 0)
-          .toFixed(2)}
+        {props.auth.id
+          ? cartItems
+              .reduce((a, c) => {
+                return a + c.orderDetails.totalPrice;
+              }, 0)
+              .toFixed(2)
+          : cartItems
+              .reduce((a, c) => {
+                return a + c.price * c.count;
+              }, 0)
+              .toFixed(2)}
       </div>
       <div>{/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}</div>
       {cartItems.map((item, i) => {
@@ -81,6 +93,7 @@ const ViewCart = (props) => {
 const mapStateToProps = (state) => {
   return {
     cartItem: state.cart,
+    auth: state.auth,
   };
 };
 
@@ -89,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (product, count) => dispatch(addToCart(product, count)),
     removeFromCart: (product, count) =>
       dispatch(removeFromCart(product, count)),
+    userCart: (userId) => dispatch(userCart(userId)),
   };
 };
 

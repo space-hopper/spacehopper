@@ -1,16 +1,17 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, CREATE_ORDER } from './actions';
 import axios from 'axios';
 
-export const createOrder = (id) => ({
+export const createOrder = (products) => ({
   type: CREATE_ORDER,
-  id,
+  products,
 });
 
 export const userCart = (id) => {
   //get cart from the back end
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.get(`/api/orders/cart/${id}`);
+      const products = (await axios.get(`/api/orders/cart/${id}`)).data[0]
+        .products;
       dispatch(createOrder(products));
     } catch (error) {
       console.log('could not fetch order');
@@ -44,12 +45,9 @@ export const addToCart = (product, count) => {
       const productId = product.id;
       const orderId = res.data[0].id;
       const orderInfo = (
-        await axios.put(
-          `/api/orders/${orderId}/${productId}`,
-          {
-            quantity: count,
-          },
-        )
+        await axios.put(`/api/orders/${orderId}/${productId}`, {
+          quantity: count,
+        })
       ).data;
       newItems = orderInfo.map((val) => {
         return {

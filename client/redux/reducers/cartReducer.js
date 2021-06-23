@@ -12,7 +12,7 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_ORDER:
-      return { ...state, cartItems: action.payload };
+      return { ...state, cartItems: action.products };
     case ADD_TO_CART:
       if (action.isLoggedIn) {
         const newCartItems = [...action.newItems];
