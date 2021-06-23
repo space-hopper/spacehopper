@@ -1,5 +1,21 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, CREATE_ORDER } from './actions';
 import axios from 'axios';
+
+export const createOrder = (id) => ({
+  type: CREATE_ORDER,
+  id
+})
+
+export const userCart = (id) => {
+  return async (dispatch) => {
+    try {
+      const {data: products} = await axios.get(`api/orders/cart/${id}`)
+      dispatch(createOrder(products))
+    } catch (error) {
+      console.log("could not fetch order")
+    }
+  }
+}
 
 export const addToCart = (product, count) => {
   return async (dispatch, getState) => {

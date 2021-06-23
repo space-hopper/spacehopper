@@ -30,6 +30,7 @@ router.get('/cart/:userId', async (req, res, next) => {
     next(err);
   }
 });
+
 router.put('/checkout/:orderId', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
