@@ -14,10 +14,9 @@ export const cartReducer = (state = initialState, action) => {
     case CREATE_ORDER:
       return { ...state, cartItems: action.payload };
     case ADD_TO_CART:
-      let newCartItems = [];
       if (action.isLoggedIn) {
         console.log('newItems', action.newItems);
-        newCartItems = [...action.newItems];
+        const newCartItems = [...action.newItems];
         console.log('newCartItems', newCartItems);
         return { ...state, cartItems: newCartItems };
       } else {
@@ -29,14 +28,19 @@ export const cartReducer = (state = initialState, action) => {
             return accumulator;
           }, false)
         ) {
-          newCartItems = state.cartItems.map((product) => {
+          const newCartItems = state.cartItems.map((product) => {
             if (product.id == action.newItems[0].id) {
               product.count++;
             }
             return product;
           });
+          return { ...state, cartItems: newCartItems };
+        } else {
+          return {
+            ...state,
+            cartItems: [...state.cartItems, ...action.newItems],
+          };
         }
-        return { ...state, cartItems: newCartItems };
       }
 
     case REMOVE_FROM_CART:
