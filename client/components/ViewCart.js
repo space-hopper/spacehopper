@@ -7,13 +7,13 @@ import { addToCart, removeFromCart } from '../redux/actions/CartThunks';
 const ViewCart = (props) => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState([]);
-  console.log("ViewCart props", props);
+  console.log('ViewCart props', props);
   const cartItems = props.cartItem.cartItems;
 
   const increaseQuantity = (index) => {
     const currentItems = [...cartItems];
     setCount(count + 1);
-    console.log("count", count);
+    console.log('count', count);
     props.addToCart(currentItems[index], count);
   };
 
@@ -27,9 +27,9 @@ const ViewCart = (props) => {
 
   const handleItemDelete = (index) => {
     const updatedItems = [...cartItems];
+    props.addToCart(cartItems[index], 0);
     cartItems.splice(index, 1);
     setItem(updatedItems);
-    props.removeFromCart(cartItems[index], 1);
   };
 
   return (
