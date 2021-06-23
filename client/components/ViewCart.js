@@ -26,10 +26,7 @@ const ViewCart = (props) => {
   };
 
   const handleItemDelete = (index) => {
-    const updatedItems = [...cartItems];
     props.addToCart(cartItems[index], 0);
-    cartItems.splice(index, 1);
-    setItem(updatedItems);
   };
 
   return (
