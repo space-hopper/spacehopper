@@ -26,6 +26,7 @@ const ViewCart = (props) => {
     const updatedItems = [...cartItems];
     cartItems.splice(index, 1);
     setItem(updatedItems);
+    props.removeFromCart(cartItems[index], 1)
     
   };
 
