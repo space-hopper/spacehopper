@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import auth from '../store/auth';
-import {Login} from './AuthForm';
+import { Login } from './AuthForm';
 import { addToCart, removeFromCart } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState([]);
-
+  console.log(props);
   const cartItems = props.cartItem.cartItems;
 
   const increaseQuantity = (index) => {
@@ -28,48 +28,50 @@ const ViewCart = (props) => {
     const updatedItems = [...cartItems];
     cartItems.splice(index, 1);
     setItem(updatedItems);
-    props.removeFromCart(cartItems[index], 1)
-    
+    props.removeFromCart(cartItems[index], 1);
   };
 
   return (
     <div>
       <div className="cart-total">
-      Total:{' $'}
-      {cartItems
-        .reduce((a, c) => {
-          return a + c.price * c.count;
-        }, 0)
-        .toFixed(2)}
+        Total:{' $'}
+        {cartItems
+          .reduce((a, c) => {
+            return a + c.price * c.count;
+          }, 0)
+          .toFixed(2)}
       </div>
-      <div>
-        {/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}
-      </div>
+      <div>{/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}</div>
       {cartItems.map((item, i) => {
         return (
           <div className="cart-container" key={item.id}>
             <div className="products-page">
-          <img className="productImage-card" src={item.imageURL} alt={item.name} onClick={() => handleItemDelete(i)}/>
-            <div className="itemName">{item.name}</div>
-            <div className="productPrice">$ {item.price.toFixed(2)}</div>
-            <div className="buttonSpacing"></div>
-            <button
-              className="buttonDesignQ"
-              onClick={() => increaseQuantity(i)}
-            >
-              +
-            </button>
-            <input
-              className="quantityInput"
-              onChange={(e) => setCount(e.target.value)}
-              value={item.count}
-            />
-            <button
-              className="buttonDesignQ"
-              onClick={() => decreaseQuantity(i)}
-            >
-              -
-            </button>
+              <img
+                className="productImage-card"
+                src={item.imageURL}
+                alt={item.name}
+                onClick={() => handleItemDelete(i)}
+              />
+              <div className="itemName">{item.name}</div>
+              <div className="productPrice">$ {item.price.toFixed(2)}</div>
+              <div className="buttonSpacing"></div>
+              <button
+                className="buttonDesignQ"
+                onClick={() => increaseQuantity(i)}
+              >
+                +
+              </button>
+              <input
+                className="quantityInput"
+                onChange={(e) => setCount(e.target.value)}
+                value={item.count}
+              />
+              <button
+                className="buttonDesignQ"
+                onClick={() => decreaseQuantity(i)}
+              >
+                -
+              </button>
             </div>
           </div>
         );
@@ -83,7 +85,6 @@ const mapStateToProps = (state) => {
     cartItem: state.cart,
   };
 };
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
