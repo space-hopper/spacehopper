@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import auth from '../store/auth';
+import {Login} from './AuthForm';
 import { addToCart, removeFromCart } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
@@ -40,6 +42,9 @@ const ViewCart = (props) => {
         }, 0)
         .toFixed(2)}
       </div>
+      <div>
+        {/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}
+      </div>
       {cartItems.map((item, i) => {
         return (
           <div className="cart-container" key={item.id}>
@@ -78,6 +83,7 @@ const mapStateToProps = (state) => {
     cartItem: state.cart,
   };
 };
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
