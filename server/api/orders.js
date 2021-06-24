@@ -101,7 +101,7 @@ router.put('/:orderId/:productId', requireToken, async (req, res, next) => {
           .orderDetails.save();
       }
     }
-    res.json(order);
+    res.json(await order.getProducts());
   } catch (err) {
     next(err);
   }
