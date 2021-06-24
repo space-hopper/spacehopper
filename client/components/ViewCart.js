@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import auth from '../store/auth';
-<<<<<<< HEAD
-import {Login} from './AuthForm';
-=======
 import { Login } from './AuthForm';
->>>>>>> df3a8289b9c102bd97e024d33953212f4b344861
 import { addToCart, removeFromCart } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState([]);
-<<<<<<< HEAD
-
-=======
-  console.log("ViewCart props", props);
->>>>>>> df3a8289b9c102bd97e024d33953212f4b344861
   const cartItems = props.cartItem.cartItems;
 
   const increaseQuantity = (index) => {
