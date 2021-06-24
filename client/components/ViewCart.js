@@ -50,7 +50,7 @@ const ViewCart = (props) => {
 
   return (
     <div className="container">
-      <button className="buttonDesign"
+      <button className="buttonDesign glow-on-hover"
       onClick={() => props.checkout(props.auth.id, cartItems[0].orderDetails.orderId)}>
         Proceed to Checkout</button>
       <div className="cart-total">
