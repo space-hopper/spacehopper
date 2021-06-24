@@ -21,8 +21,11 @@ export const checkout = (order) => {
 export const checkoutThunk = (userId, orderId) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.put(
         `/api/orders/checkout/${userId}/${orderId}`,
+        {},
+        { headers: { authorization: token } },
       );
       dispatch(checkout(data));
     } catch (error) {
