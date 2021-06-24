@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CREATE_ORDER, CHECKOUT } from './actions';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CREATE_ORDER,
+  CHECKOUT,
+} from './actions';
 import axios from 'axios';
 
 export const createOrder = (products) => ({
@@ -16,20 +21,31 @@ export const checkout = (order) => {
 export const checkoutThunk = (userId, orderId) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.put(`/api/orders/checkout/${userId}/${orderId}`)
-      dispatch(checkout(data))
+      const token = window.localStorage.getItem('token');
+      const { data } = await axios.put(
+        `/api/orders/checkout/${userId}/${orderId}`,
+        {},
+        { headers: { authorization: token } },
+      );
+      dispatch(checkout(data));
     } catch (error) {
-      console.log("error during checkout :(", error)
+      console.log('error during checkout :(', error);
     }
-  }
-}
+  };
+};
 
 export const userCart = (id) => {
   //get cart from the back end
   return async (dispatch) => {
+    const token = window.localStorage.getItem('token');
     try {
-      const products = (await axios.get(`/api/orders/cart/${id}`)).data[0]
-        .products;
+      const products = (
+        await axios.get(`/api/orders/cart/${id}`, {
+          headers: {
+            authorization: token,
+          },
+        })
+      ).data[0].products;
       dispatch(createOrder(products));
     } catch (error) {
       console.log('could not fetch order');
@@ -41,16 +57,22 @@ export const addToCart = (product, count) => {
   return async (dispatch, getState) => {
     const user = getState().auth;
     let newItems;
+    const token = window.localStorage.getItem('token');
     if (user.id) {
-      const res = await axios.get(`/api/orders/cart/${user.id}`);
-      console.log("product in CartThunks", product)
+      const res = await axios.get(`/api/orders/cart/${user.id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
       const productId = product.id;
-      console.log("productId", productId)
+      console.log('productId', productId);
       const orderId = res.data[0].id;
       newItems = (
-        await axios.put(`/api/orders/${orderId}/${productId}`, {
-          quantity: count,
-        })
+        await axios.put(
+          `/api/orders/${orderId}/${productId}`,
+          { quantity: count },
+          { headers: { authorization: token } },
+        )
       ).data;
     } else {
       newItems = [{ ...product, count }];
