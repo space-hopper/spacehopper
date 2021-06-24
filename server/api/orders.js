@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Order, Product, OrderDetails } = require('../db');
+const { User, Order, Product } = require('../db');
 const { requireToken } = require('./gatekeepingMiddleware');
 
 //mounted on /api/orders
