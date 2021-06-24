@@ -17,12 +17,10 @@ class ProductCard extends React.Component {
         <div className="itemName">{item.name}</div>
         <div className="productPrice">$ {item.price.toFixed(2)}</div>
         <div className="buttonSpacing">
-          <button
+          <button className="glow-on-hover" type="button"
             onClick={() => {
               this.props.addToCart(item, 1);
-            }}
-            className="buttonDesign"
-          >
+            }}>
             Add to Cart
           </button>
         </div>
