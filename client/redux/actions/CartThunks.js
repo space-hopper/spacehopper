@@ -9,9 +9,15 @@ export const createOrder = (products) => ({
 export const userCart = (id) => {
   //get cart from the back end
   return async (dispatch) => {
+    const token = window.localStorage.getItem('token');
     try {
-      const products = (await axios.get(`/api/orders/cart/${id}`)).data[0]
-        .products;
+      const products = (
+        await axios.get(`/api/orders/cart/${id}`, {
+          headers: {
+            authorization: token,
+          },
+        })
+      ).data[0].products;
       dispatch(createOrder(products));
     } catch (error) {
       console.log('could not fetch order');
@@ -41,12 +47,22 @@ export const addToCart = (product, count) => {
     const user = getState().auth;
     let newItems;
     if (user.id) {
-      const res = await axios.get(`/api/orders/cart/${user.id}`);
+      const token = window.localStorage.getItem('token');
+      const res = await axios.get(`/api/orders/cart/${user.id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
       const productId = product.id;
       const orderId = res.data[0].id;
       newItems = (
         await axios.put(`/api/orders/${orderId}/${productId}`, {
-          quantity: count,
+          headers: {
+            authorization: token,
+          },
+          body: {
+            quantity: count,
+          },
         })
       ).data;
       // newItems = orderInfo.map((val) => {
