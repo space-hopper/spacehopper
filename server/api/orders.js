@@ -34,7 +34,7 @@ router.get('/cart/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/checkout/:orderId', async (req, res, next) => {
+router.put('/checkout/:userId/:orderId', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
     if (order.status !== 'cart')
@@ -58,6 +58,8 @@ router.put('/checkout/:orderId', async (req, res, next) => {
           );
           await products[i].save();
         }
+        const newOrder = await Order.create();
+        await newOrder.setUser(await User.findByPk(req.params.userId));
         res.send(order);
       }
     }
