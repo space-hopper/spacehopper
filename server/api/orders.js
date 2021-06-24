@@ -35,39 +35,43 @@ router.get('/cart/:userId', requireToken, async (req, res, next) => {
   }
 });
 
-router.put('/checkout/:orderId', requireToken, async (req, res, next) => {
-  try {
-    const order = await Order.findByPk(req.params.orderId);
-    if (order.status !== 'cart')
-      res.status(403).json('This order has already been placed');
-    else {
-      const products = await order.getProducts();
-      const outOfStock = await products.reduce((accumulator, val) => {
-        if (val.quantity < val.orderDetails.quantity) accumulator = true;
-        return accumulator;
-      }, false);
-      if (outOfStock)
-        res.status(403).json('One or more items are out of stock');
+router.put(
+  '/checkout/:userId/:orderId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      const order = await Order.findByPk(req.params.orderId);
+      if (order.status !== 'cart')
+        res.status(403).json('This order has already been placed');
       else {
-        await order.set('status', 'pending');
-        await order.save();
-        for (let i = 0; i < products.length; i++) {
-          const quantity = products[i].quantity;
-          await products[i].set(
-            'quantity',
-            quantity - products[i].orderDetails.quantity,
-          );
-          await products[i].save();
+        const products = await order.getProducts();
+        const outOfStock = await products.reduce((accumulator, val) => {
+          if (val.quantity < val.orderDetails.quantity) accumulator = true;
+          return accumulator;
+        }, false);
+        if (outOfStock)
+          res.status(403).json('One or more items are out of stock');
+        else {
+          await order.set('status', 'pending');
+          await order.save();
+          for (let i = 0; i < products.length; i++) {
+            const quantity = products[i].quantity;
+            await products[i].set(
+              'quantity',
+              quantity - products[i].orderDetails.quantity,
+            );
+            await products[i].save();
+          }
+          const newOrder = await Order.create();
+          await newOrder.setUser(await User.findByPk(req.params.userId));
+          res.send(order);
         }
-        const newOrder = await Order.create();
-        await newOrder.setUser(await User.findByPk(req.params.userId));
-        res.send(order);
       }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 router.put('/:orderId/:productId', requireToken, async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
