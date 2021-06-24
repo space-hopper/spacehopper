@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User, Order, Product } = require('../db');
+const { requireToken } = require('./gatekeepingMiddleware');
 
 //mounted on /api/orders
-router.post('/:userId', async (req, res, next) => {
+router.post('/:userId', requireToken, async (req, res, next) => {
   try {
     const order = await Order.create();
     await order.setUser(await User.findByPk(req.params.userId));
@@ -12,7 +13,7 @@ router.post('/:userId', async (req, res, next) => {
   }
 });
 
-router.get('/cart/:userId', async (req, res, next) => {
+router.get('/cart/:userId', requireToken, async (req, res, next) => {
   try {
     const order = await Order.findAll({
       include: [
@@ -34,7 +35,7 @@ router.get('/cart/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/checkout/:orderId', async (req, res, next) => {
+router.put('/checkout/:orderId', requireToken, async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
     if (order.status !== 'cart')
@@ -65,7 +66,7 @@ router.put('/checkout/:orderId', async (req, res, next) => {
     next(err);
   }
 });
-router.put('/:orderId/:productId', async (req, res, next) => {
+router.put('/:orderId/:productId', requireToken, async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.orderId);
     const productsInOrder = await order.getProducts();
