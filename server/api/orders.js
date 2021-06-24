@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Order, Product } = require('../db');
+const { User, Order, Product, OrderDetails } = require('../db');
 const { requireToken } = require('./gatekeepingMiddleware');
 
 //mounted on /api/orders
@@ -34,7 +34,17 @@ router.get('/cart/:userId', requireToken, async (req, res, next) => {
     next(err);
   }
 });
-
+router.get('/:userId', requireToken, async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      where: { userId: req.params.userId },
+      include: [{ model: Product }],
+    });
+    res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+});
 router.put(
   '/checkout/:userId/:orderId',
   requireToken,
