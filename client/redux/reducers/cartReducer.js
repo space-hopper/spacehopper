@@ -12,24 +12,27 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_ORDER:
-      return { ...state, cartItems: action.payload };
+      return { ...state, cartItems: action.products };
     case ADD_TO_CART:
-      if (action.isLoggedIn) {
-        console.log('newItems', action.newItems);
-        const newCartItems = [...action.newItems];
-        console.log('newCartItems', newCartItems);
+      if (action.loggedIn) {
+        const newCartItems = action.newItems.map((val) => {
+          let result = { ...val };
+          result.count = val.orderDetails.quantity;
+          return result;
+        });
         return { ...state, cartItems: newCartItems };
       } else {
+        // checking if the product already exists in the cart
         if (
-          state.cartItems.reduce((accumulator, value) => {
-            if (value.id == action.newItems[0].id) {
+          state.cartItems.reduce((accumulator, value, i) => {
+            if (value.id == action.newItems[i].id) {
               accumulator = true;
             }
             return accumulator;
           }, false)
         ) {
-          const newCartItems = state.cartItems.map((product) => {
-            if (product.id == action.newItems[0].id) {
+          const newCartItems = state.cartItems.map((product, i) => {
+            if (product.id == action.newItems[i].id) {
               product.count++;
             }
             return product;
