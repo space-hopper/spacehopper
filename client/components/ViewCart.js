@@ -6,25 +6,27 @@ import {
   addToCart,
   removeFromCart,
   userCart,
-  checkoutThunk
+  checkoutThunk,
 } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState([]);
   const [item, setItem] = useState([]);
   console.log('ViewCart props', props);
   const cartItems = props.cartItem.cartItems;
 
   const increaseQuantity = (index) => {
     const currentItems = [...cartItems];
+    // props.auth.id?
+    props.addToCart(
+      currentItems[index],
+      props.auth.id
+        ? currentItems[index].orderDetails.quantity + 1
+        : count[index] + 1,
+    );
     // setCount(count + 1);
     // console.log('count', count);
     // props.addToCart(currentItems[index], count);
-    console.log('currentItems[index]', currentItems[index]);
-    props.addToCart(
-      currentItems[index],
-      currentItems[index].orderDetails.quantity + 1,
-    );
   };
 
   const decreaseQuantity = (index) => {
@@ -36,23 +38,33 @@ const ViewCart = (props) => {
     console.log('currentItems[index]', currentItems[index]);
     props.addToCart(
       currentItems[index],
-      currentItems[index].orderDetails.quantity - 1,
+      props.auth.id
+        ? currentItems[index].orderDetails.quantity - 1
+        : count[index] - 1,
     );
   };
   useEffect(() => {
     props.userCart(props.auth.id);
   }, [props.auth]);
   const handleItemDelete = (index) => {
-    props.addToCart(cartItems[index], 0);
+    const currentItems = [...cartItems];
+    props.auth.id
+      ? props.addToCart(cartItems[index], 0)
+      : props.removeFromCart(currentItems[index], count[index]);
   };
 
-  console.log("props.auth.id", props.auth.id)
+  console.log('props.auth.id', props.auth.id);
 
   return (
     <div className="container">
-      <button className="buttonDesign glow-on-hover"
-      onClick={() => props.checkout(props.auth.id, cartItems[0].orderDetails.orderId)}>
-        Proceed to Checkout</button>
+      <button
+        className="buttonDesign glow-on-hover"
+        onClick={() =>
+          props.checkout(props.auth.id, cartItems[0].orderDetails.orderId)
+        }
+      >
+        Proceed to Checkout
+      </button>
       <div className="cart-total">
         Total:{' $'}
         {props.auth.id
@@ -68,40 +80,40 @@ const ViewCart = (props) => {
               .toFixed(2)}
       </div>
       <div className="cart-container">
-      {cartItems.map((item, i) => {
-        return (
-          <div key={item.id}>
-            <div className="products-page">
-              <img
-                className="productImage-card"
-                src={item.imageURL}
-                alt={item.name}
-                onClick={() => handleItemDelete(i)}
-              />
-              <div className="itemName">{item.name}</div>
-              <div className="productPrice">$ {item.price.toFixed(2)}</div>
-              <div className="buttonSpacing"></div>
-              <button
-                className="buttonDesignQ"
-                onClick={() => increaseQuantity(i)}
-              >
-                +
-              </button>
-              <input
-                className="quantityInput"
-                onChange={(e) => setCount(e.target.value)}
-                value={item.orderDetails.quantity}
-              />
-              <button
-                className="buttonDesignQ"
-                onClick={() => decreaseQuantity(i)}
-              >
-                -
-              </button>
+        {cartItems.map((item, i) => {
+          return (
+            <div key={item.id}>
+              <div className="products-page">
+                <img
+                  className="productImage-card"
+                  src={item.imageURL}
+                  alt={item.name}
+                  onClick={() => handleItemDelete(i)}
+                />
+                <div className="itemName">{item.name}</div>
+                <div className="productPrice">$ {item.price.toFixed(2)}</div>
+                <div className="buttonSpacing"></div>
+                <button
+                  className="buttonDesignQ"
+                  onClick={() => increaseQuantity(i)}
+                >
+                  +
+                </button>
+                <input
+                  className="quantityInput"
+                  onChange={(e) => setCount(e.target.value)}
+                  value={props.auth.id ? item.orderDetails.quantity : count[i]}
+                />
+                <button
+                  className="buttonDesignQ"
+                  onClick={() => decreaseQuantity(i)}
+                >
+                  -
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
     </div>
   );
@@ -114,14 +126,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product, count) => dispatch(addToCart(product, count)),
     removeFromCart: (product, count) =>
       dispatch(removeFromCart(product, count)),
     userCart: (userId) => dispatch(userCart(userId)),
-    checkout: (userId, orderId) => dispatch(checkoutThunk(userId, orderId))
+    checkout: (userId, orderId) => dispatch(checkoutThunk(userId, orderId)),
   };
 };
 
