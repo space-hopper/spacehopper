@@ -22,6 +22,14 @@ router.get('/cart/:userId', requireToken, async (req, res, next) => {
           where: {
             id: req.params.userId,
           },
+          attributes: [
+            'id',
+            'firstName',
+            'lastName',
+            'address',
+            'phoneNumber',
+            'email',
+          ],
         },
         { model: Product },
       ],
