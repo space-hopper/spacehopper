@@ -6,6 +6,7 @@ import {
   addToCart,
   removeFromCart,
   userCart,
+  checkoutThunk
 } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
@@ -45,9 +46,13 @@ const ViewCart = (props) => {
     props.addToCart(cartItems[index], 0);
   };
 
+  console.log("props.auth.id", props.auth.id)
+
   return (
     <div className="container">
-      <button className="buttonDesign">Proceed to Checkout</button>
+      <button className="buttonDesign"
+      onClick={() => props.checkout(props.auth.id, cartItems[0].orderDetails.orderId)}>
+        Proceed to Checkout</button>
       <div className="cart-total">
         Total:{' $'}
         {props.auth.id
@@ -115,6 +120,7 @@ const mapDispatchToProps = (dispatch) => {
     removeFromCart: (product, count) =>
       dispatch(removeFromCart(product, count)),
     userCart: (userId) => dispatch(userCart(userId)),
+    checkout: (userId, orderId) => dispatch(checkoutThunk(userId, orderId))
   };
 };
 
