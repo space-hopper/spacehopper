@@ -46,8 +46,8 @@ export const addToCart = (product, count) => {
 
     const user = getState().auth;
     let newItems;
+    const token = window.localStorage.getItem('token');
     if (user.id) {
-      const token = window.localStorage.getItem('token');
       const res = await axios.get(`/api/orders/cart/${user.id}`, {
         headers: {
           authorization: token,
@@ -56,14 +56,11 @@ export const addToCart = (product, count) => {
       const productId = product.id;
       const orderId = res.data[0].id;
       newItems = (
-        await axios.put(`/api/orders/${orderId}/${productId}`, {
-          headers: {
-            authorization: token,
-          },
-          body: {
-            quantity: count,
-          },
-        })
+        await axios.put(
+          `/api/orders/${orderId}/${productId}`,
+          { quantity: count },
+          { headers: { authorization: token } },
+        )
       ).data;
       // newItems = orderInfo.map((val) => {
       //   return {
