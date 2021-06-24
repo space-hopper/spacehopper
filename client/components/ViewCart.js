@@ -46,7 +46,8 @@ const ViewCart = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <button className="buttonDesign">Proceed to Checkout</button>
       <div className="cart-total">
         Total:{' $'}
         {props.auth.id
@@ -61,10 +62,10 @@ const ViewCart = (props) => {
               }, 0)
               .toFixed(2)}
       </div>
-      <div>{/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}</div>
+      <div className="cart-container">
       {cartItems.map((item, i) => {
         return (
-          <div className="cart-container" key={item.id}>
+          <div key={item.id}>
             <div className="products-page">
               <img
                 className="productImage-card"
@@ -96,6 +97,7 @@ const ViewCart = (props) => {
           </div>
         );
       })}
+      </div>
     </div>
   );
 };
