@@ -26,7 +26,7 @@ class SingleProduct extends React.Component {
           any space!
         </p>
         <button
-          className="buttonDesign"
+          className="glow-on-hover" type="button"
           onClick={() => {
             this.props.addToCart(this.props.product.product, 1);
           }}
