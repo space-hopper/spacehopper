@@ -1,16 +1,17 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, CREATE_ORDER } from './actions';
 import axios from 'axios';
 
-export const createOrder = (id) => ({
+export const createOrder = (products) => ({
   type: CREATE_ORDER,
-  id,
+  products,
 });
 
 export const userCart = (id) => {
   //get cart from the back end
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.get(`/api/orders/cart/${id}`);
+      const products = (await axios.get(`/api/orders/cart/${id}`)).data[0]
+        .products;
       dispatch(createOrder(products));
     } catch (error) {
       console.log('could not fetch order');
@@ -45,23 +46,20 @@ export const addToCart = (product, count) => {
       const productId = product.id;
       console.log("productId", productId)
       const orderId = res.data[0].id;
-      const orderInfo = (
-        await axios.put(
-          `/api/orders/${orderId}/${productId}`,
-          {
-            quantity: count,
-          },
-        )
+      newItems = (
+        await axios.put(`/api/orders/${orderId}/${productId}`, {
+          quantity: count,
+        })
       ).data;
-      newItems = orderInfo.map((val) => {
-        return {
-          id: val.id,
-          name: val.name,
-          imageURL: val.imageURL,
-          count: val.orderDetails.quantity,
-          price: val.price,
-        };
-      });
+      // newItems = orderInfo.map((val) => {
+      //   return {
+      //     id: val.id,
+      //     name: val.name,
+      //     imageURL: val.imageURL,
+      //     count: val.orderDetails.quantity,
+      //     price: val.price,
+      //   };
+      // });
     } else {
       // localStorage.setItem('cartItems', JSON.stringify(cartItems));
       newItems = [{ ...product, count }];
@@ -82,7 +80,7 @@ export const removeFromCart = (product, count) => {
     cartItems.forEach((item) => {
       if (item.id === product.id) {
         alreadyExists = true;
-        item.count -= count;
+        item.count -= 1;
       }
     });
     if (!alreadyExists) {
