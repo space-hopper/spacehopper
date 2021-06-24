@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   CREATE_ORDER,
+  CHECKOUT
 } from '../actions/actions';
 
 const initialState = {
@@ -50,6 +51,10 @@ export const cartReducer = (state = initialState, action) => {
       return {
         cartItems: state.cartItems.filter((item) => item !== action.payload),
       };
+    case CHECKOUT:
+      return {
+        cartItems: []
+      }
     default:
       return state;
   }

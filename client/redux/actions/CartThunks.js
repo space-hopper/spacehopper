@@ -1,10 +1,35 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CREATE_ORDER } from './actions';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CREATE_ORDER,
+  CHECKOUT,
+} from './actions';
 import axios from 'axios';
 
 export const createOrder = (products) => ({
   type: CREATE_ORDER,
   products,
 });
+
+export const checkout = (order) => {
+  return {
+    type: CHECKOUT,
+    order,
+  };
+};
+
+export const checkoutThunk = (userId, orderId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(
+        `/api/orders/checkout/${userId}/${orderId}`,
+      );
+      dispatch(checkout(data));
+    } catch (error) {
+      console.log('error during checkout :(', error);
+    }
+  };
+};
 
 export const userCart = (id) => {
   //get cart from the back end
@@ -27,23 +52,6 @@ export const userCart = (id) => {
 
 export const addToCart = (product, count) => {
   return async (dispatch, getState) => {
-    //Grabbing the current items in the cart so that we can tell if that product already exists in the cart
-    // const cartItems = getState().cart.cartItems.slice();
-    // let alreadyExists = false;
-    // // cartItems.forEach((item) => {
-    // //   if (item.id === product.id) {
-    // //     alreadyExists = true;
-    // //     item.count += count;
-    // //   }
-    // // });
-    // if (!alreadyExists) {
-    //   cartItems.push({ ...product, count: count });
-    // }
-    // If the user is logged in, save this cart in our backend by making an axios call
-    // If the user is not logged in, save this cart in their local storage
-
-    // check local storage and add items to the cart once they log in
-
     const user = getState().auth;
     let newItems;
     const token = window.localStorage.getItem('token');
@@ -54,6 +62,7 @@ export const addToCart = (product, count) => {
         },
       });
       const productId = product.id;
+      console.log('productId', productId);
       const orderId = res.data[0].id;
       newItems = (
         await axios.put(
@@ -62,17 +71,7 @@ export const addToCart = (product, count) => {
           { headers: { authorization: token } },
         )
       ).data;
-      // newItems = orderInfo.map((val) => {
-      //   return {
-      //     id: val.id,
-      //     name: val.name,
-      //     imageURL: val.imageURL,
-      //     count: val.orderDetails.quantity,
-      //     price: val.price,
-      //   };
-      // });
     } else {
-      // localStorage.setItem('cartItems', JSON.stringify(cartItems));
       newItems = [{ ...product, count }];
     }
     dispatch({

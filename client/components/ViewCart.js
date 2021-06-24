@@ -6,6 +6,7 @@ import {
   addToCart,
   removeFromCart,
   userCart,
+  checkoutThunk
 } from '../redux/actions/CartThunks';
 
 const ViewCart = (props) => {
@@ -45,8 +46,13 @@ const ViewCart = (props) => {
     props.addToCart(cartItems[index], 0);
   };
 
+  console.log("props.auth.id", props.auth.id)
+
   return (
-    <div>
+    <div className="container">
+      <button className="buttonDesign glow-on-hover"
+      onClick={() => props.checkout(props.auth.id, cartItems[0].orderDetails.orderId)}>
+        Proceed to Checkout</button>
       <div className="cart-total">
         Total:{' $'}
         {props.auth.id
@@ -61,10 +67,10 @@ const ViewCart = (props) => {
               }, 0)
               .toFixed(2)}
       </div>
-      <div>{/* {isLoggedIn ? "Welcome to Your Cart" : <Login />} */}</div>
+      <div className="cart-container">
       {cartItems.map((item, i) => {
         return (
-          <div className="cart-container" key={item.id}>
+          <div key={item.id}>
             <div className="products-page">
               <img
                 className="productImage-card"
@@ -96,6 +102,7 @@ const ViewCart = (props) => {
           </div>
         );
       })}
+      </div>
     </div>
   );
 };
@@ -107,12 +114,14 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product, count) => dispatch(addToCart(product, count)),
     removeFromCart: (product, count) =>
       dispatch(removeFromCart(product, count)),
     userCart: (userId) => dispatch(userCart(userId)),
+    checkout: (userId, orderId) => dispatch(checkoutThunk(userId, orderId))
   };
 };
 

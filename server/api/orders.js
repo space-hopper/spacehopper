@@ -59,6 +59,8 @@ router.put('/checkout/:orderId', requireToken, async (req, res, next) => {
           );
           await products[i].save();
         }
+        const newOrder = await Order.create();
+        await newOrder.setUser(await User.findByPk(req.params.userId));
         res.send(order);
       }
     }
