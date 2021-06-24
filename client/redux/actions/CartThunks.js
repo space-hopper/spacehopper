@@ -42,7 +42,9 @@ export const addToCart = (product, count) => {
     let newItems;
     if (user.id) {
       const res = await axios.get(`/api/orders/cart/${user.id}`);
+      console.log("product in CartThunks", product)
       const productId = product.id;
+      console.log("productId", productId)
       const orderId = res.data[0].id;
       newItems = (
         await axios.put(`/api/orders/${orderId}/${productId}`, {

@@ -109,6 +109,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product, count) => dispatch(addToCart(product, count)),
